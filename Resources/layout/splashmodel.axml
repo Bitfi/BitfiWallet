@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/bg">
+	<LinearLayout
+		android:id="@+id/linlaHeaderProgressS"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/logo_lg"
+android:layout_marginTop="-140dp"
+android:layout_marginLeft="-65dp"
+android:paddingLeft="65dp"
+android:paddingTop="140dp"
+		android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:backgroundTint="@color/bar3"
+					android:background="@color/black_overlay"	
+			android:paddingTop="35dp">
+			<ProgressBar
+				android:id="@+id/progressBarS"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:indeterminate="true"
+				android:indeterminateTint="@color/lg"			
+			/>
+			<TextView
+				android:id="@+id/ovt1S"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:paddingTop="10dip"
+				android:textColor="@color/lg"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:typeface="monospace" />
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

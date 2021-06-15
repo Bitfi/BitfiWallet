@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	 android:paddingBottom="25dp"
+		android:paddingRight="5dp"
+			  android:paddingTop="25dp"
+	style="@style/FullscreenTheme"
+	>
+	    
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+		<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	>
+	    <TextView
+            android:id="@+id/tvhtmltitle"
+    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			  android:textSize="16sp"
+		android:textStyle="bold"
+		  android:paddingLeft="15dp"
+			android:paddingRight="10dp"
+
+		  android:paddingBottom="10dp"
+	android:textColor="@color/colorOffWhite2"/>
+        <TextView
+            android:id="@+id/tvhtml"
+    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:lineSpacingMultiplier="1.5"
+			  android:textSize="14sp"
+			  android:typeface="monospace"
+						  android:paddingLeft="15dp"
+			android:paddingRight="15dp"
+	  android:paddingTop="0dp"
+				  android:paddingBottom="0dp"
+			            android:textColor="@color/colorOffWhite2"
+            android:layout_weight="1.0"/>
+			</LinearLayout>
+    </ScrollView>
+</LinearLayout>

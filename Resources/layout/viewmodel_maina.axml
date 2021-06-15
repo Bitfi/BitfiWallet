@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/bg">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/logo_lg"
+android:layout_marginTop="-140dp"
+android:layout_marginLeft="-65dp"
+android:paddingLeft="65dp"
+android:paddingTop="140dp"
+		android:orientation="vertical">
+
+	
+
+		<LinearLayout
+			android:id="@+id/linlaHeaderProgress"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"			
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:visibility="visible"
+			android:backgroundTint="@color/bar3"
+			android:background="@color/black_overlay"	
+			android:paddingTop="35dp"
+		>
+			<ProgressBar
+				android:id="@+id/progressBar"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:indeterminate="true"
+				android:indeterminateTint="@color/lg"
+			/>
+			<TextView
+				android:id="@+id/ovt1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:paddingTop="10dip"
+				android:textColor="@color/lg"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:typeface="monospace"/>
+		</LinearLayout>
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"	
+			android:id="@+id/linlaHeaderVM"
+			android:visibility="visible"
+			android:paddingBottom="10dp"
+			android:backgroundTint="@color/bar3"
+			android:background="@color/black_overlay"
+		>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/tvliktv65"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="15dp"
+				android:text="SEND THIS TRANSACTION NOW?"
+				android:paddingLeft="10dp"
+				android:textColor="@color/lg"
+				android:textSize="14sp"
+				android:textStyle="bold"
+				android:typeface="normal"
+				android:visibility="gone"
+			/>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="70dp"
+				android:paddingLeft="10dp"
+				android:paddingRight="10dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
+				
+				android:background="@color/black_overlay"
+				>
+				<Button
+					android:id="@+id/btnlik64"
+					android:layout_width="wrap_content"
+					android:layout_height="45dp"
+					android:backgroundTint="@color/alogom"
+					android:paddingStart="13sp"
+					android:paddingEnd="13sp"
+					android:text="SEND"
+					android:textAlignment="center"
+					android:textColor="@color/hdr"
+					android:textSize="13sp"
+					android:textStyle="normal"
+					android:theme="@style/FullscreenTheme"
+					android:typeface="monospace"
+					android:visibility="visible">
+				</Button>
+				<LinearLayout
+					android:layout_alignParentRight="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:showDividers="none"
+					android:visibility="visible">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/tvliktv64"
+						android:text=""
+						android:paddingTop="10dp"
+						android:textColor="@color/lg"
+						android:textSize="14sp"
+						android:textStyle="bold"
+						android:typeface="monospace" />
+
+					<Button
+						android:id="@+id/btnlik65"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:background="@android:color/transparent"
+						android:textAlignment="viewEnd"
+						android:text="NO, CLOSE"
+						android:textColor="@color/lg"
+						android:textSize="16dp"
+						android:textStyle="bold"
+						android:typeface="normal"
+						android:visibility="gone">
+					</Button>
+					<Button
+						android:id="@+id/btnlik66"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:background="@android:color/transparent"
+						android:text="YES, SEND "
+						android:layout_marginLeft="20dp"
+						android:layout_marginRight="20dp"
+						android:textAlignment="viewEnd"
+						android:textColor="@color/lg"
+						android:textSize="16dp"
+						android:textStyle="bold"
+						android:typeface="normal"
+						android:visibility="gone">
+					</Button>
+				</LinearLayout>
+			</RelativeLayout>
+			<ListView
+				android:id="@android:id/list"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
+ />
+		</LinearLayout>
+		
+	</LinearLayout>
+</LinearLayout>

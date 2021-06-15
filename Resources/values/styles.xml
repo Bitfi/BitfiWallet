@@ -1,0 +1,334 @@
+<resources>
+  
+  <color name="bg">#2c393d</color>
+  <color name="hdr">#1c262c</color>
+
+  <color name="men">#777777</color>
+  <color name="bar">#3d3d3d</color>
+  <color name="bar2">#202a30</color>
+  <color name="bar3">#212b2e</color>
+  <color name="bar4">#27333b</color>
+  <color name="yel">#e7b81e</color>
+  
+  <color name="lg">#5f9ea0</color>
+
+	 <color name="lgsm">#3e5359</color>
+
+  <color name="lgdesc">#374a4f</color>
+
+  <color name="logoh">#aee4e6</color>
+  
+  <color name="logo">#414141</color>
+  <color name="logom">@drawable/grad</color>
+  <color name="logolg">@drawable/gradlg</color>
+  <color name="logolgs">@drawable/gradlgs</color>
+  <color name="logolgv">@drawable/gradlgv</color>
+  
+  <color name="alogom">#e7b81e</color>
+  <color name="ablack">#000000</color>
+  <color name="awhite">#ffffff</color>
+  <color name="agradlg">@drawable/agrad</color>
+  
+  <color name="txtlg">#777777</color>
+  <color name="txttb">#87D1A8</color>
+  
+  <color name="txtwt">#ffffff</color>
+  <color name="colorWhite">#ffffff</color>
+
+
+  <color name="gray2">#1c262c</color>
+  
+  <color name="gray">#4b4b4b</color>
+  
+  
+  <color name="black2">#4b4b4b</color>
+
+
+
+  <color name="black">@android:color/transparent</color>
+  <color name="black3">#2c393d</color>
+  <color name="colorPrimaryDark">#1c262c</color>
+  
+  <color name="colorPrimary2">#2c393d</color>
+  
+  
+  <color name="space">#181e21</color>
+    <color name="space2">#587d86</color>
+  
+  <color name="bg2">#1c262c</color>
+  <color name="hdr2">#2c393d</color>
+  
+  
+  <color name="DarkGreen">#226034</color>
+  <color name="green">#303F9F</color>
+
+  <color name="gray22">#485e63</color>
+  <color name="colorPrimary">#417173</color>
+  <color name="colorPrimary3">#d0d1d8</color>
+  <color name="colorPrimary4">#bebfc6</color>
+  <color name="colorPrimaryDarkD">#303F9F</color>
+  <color name="colorAccent">#FF4081</color>
+  <color name="black_overlay">#66000000</color>
+  <color name="colorOffWhite">#ffffff</color>
+  <color name="colorOffWhite2">#f0f0f7</color>
+
+  <style name="GenericProgressBackground" parent="android:Theme">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">fill_parent</item>
+    <item name="android:background">#DD111111</item>
+    <item name="android:gravity">center</item>
+  </style>
+  <style name="GenericProgressIndicator" parent="@android:style/Widget.ProgressBar.Large">
+    <item name="android:layout_width">48dp</item>
+    <item name="android:layout_height">48dp</item>
+    <item name="android:indeterminate">true</item>
+
+  </style>
+  
+
+
+
+  <style name="FullscreenActionBarStyle">
+    <item name="android:background">@color/bg</item>
+  </style>
+
+  <style name="AlertTheme" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="android:background">@color/colorWhite</item>
+    <item name="android:textColor">@color/black</item>
+    <item name="android:paddingTop">5dp</item>
+    <item name="android:paddingBottom">5dp</item>
+    <item name="android:paddingLeft">5dp</item>
+    <item name="android:paddingRight">5dp</item>
+    <item name="android:textSize">24sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:layout_weight">1</item>
+  </style>
+  <style name="MyAlertDialogTheme" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="android:windowBackground">@color/black_overlay</item>
+    <item name="android:background">@android:color/transparent</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    <item name="android:lineSpacingMultiplier">1.1</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowIsFloating">true</item>
+    <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+    <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+  </style>
+
+  <style name="MyAlertDialogThemeB" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="android:windowBackground">@color/black_overlay</item>
+    <item name="android:background">@color/bg</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    <item name="android:lineSpacingMultiplier">1.1</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowIsFloating">true</item>
+    <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+    <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    <item name="android:windowMinWidthMajor">100%</item>
+    <item name="android:windowMinWidthMinor">100%</item>
+  </style>
+
+  <style name="MyAlertDialogThemeE" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="android:windowBackground">@color/black_overlay</item>
+    <item name="android:background">@color/txtlg</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:lineSpacingMultiplier">1.2</item>
+    <item name="android:windowIsFloating">true</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+  
+  <style name="MyAlertDialogThemeD" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="android:windowBackground">@color/black_overlay</item>
+    <item name="android:background">@color/hdr</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:lineSpacingMultiplier">1.2</item>
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:textSize">16sp</item>
+  </style>
+
+  <style name="MyAlertDialogThemeNox" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="android:windowBackground">@color/black_overlay</item>
+    <item name="android:background">@color/hdr</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:lineSpacingMultiplier">1.2</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:windowIsFloating">false</item>
+  </style>
+
+  <style name="MyAlertDialogThemeNox2" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="android:windowBackground">@color/black_overlay</item>
+    <item name="android:textColor">#a8fcff</item>
+    <item name="android:background">@color/hdr</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">18.5sp</item>
+    <item name="android:windowIsFloating">false</item>
+  </style>
+
+  
+  <style name="MyAlertDialogThemeC" parent="android:Theme.DeviceDefault.Panel">
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:windowContentOverlay">@null</item>
+  </style>
+  
+  <style name="NXKBSyle">
+
+    <item name="android:paddingLeft">4dp</item>
+    <item name="android:paddingRight">4dp</item>
+    <item name="android:paddingTop">8dp</item>
+    <item name="android:paddingBottom">3dp</item>
+    
+    <item name="android:background">@drawable/selector</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textSize">28sp</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:capitalize">none</item>
+    <item name="android:autoText">false</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:cursorVisible">false</item>
+    <item name="android:editable">false</item>
+    <item name="android:inputType">none</item>
+    <item name="android:textColor">@color/txtlg</item>
+  </style>
+  <style name="NXKBSyleN">
+    <item name="android:layout_marginHorizontal">0dp</item>
+    <item name="android:layout_marginVertical">1.5dp</item>
+    <item name="android:background">@drawable/selectorNumeric</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">22sp</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:capitalize">none</item>
+    <item name="android:autoText">false</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:cursorVisible">false</item>
+    <item name="android:editable">false</item>
+    <item name="android:inputType">none</item>
+
+  </style>
+  <style name="NXKBSyleN2">
+    <item name="android:background">@drawable/selectorNumeric</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">22sp</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:capitalize">none</item>
+    <item name="android:autoText">false</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:cursorVisible">false</item>
+    <item name="android:editable">false</item>
+    <item name="android:inputType">none</item>
+
+  </style>
+  
+  <style name="NXKBSyleS">
+
+    
+    <item name="android:background">@color/bg2</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:capitalize">none</item>
+    <item name="android:autoText">false</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:cursorVisible">false</item>
+    <item name="android:editable">false</item>
+    <item name="android:inputType">none</item>
+    <item name="android:textColor">@color/txtlg</item>
+  </style>
+
+  <style name="noAnimTheme">
+    <item name="android:windowAnimationStyle">@null</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@color/colorPrimary2</item>
+    <item name="android:statusBarColor">@color/colorOffWhite</item>
+    <item name="android:navigationBarColor">@color/colorPrimary2</item>
+    <item name="android:color">@color/colorPrimary2</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">false</item>
+    <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+    <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+  </style>
+
+  <style name="Widget" />
+  <style name="Widget.DescriptionBar">
+    <item name="android:background">#fb3</item>
+    <item name="android:paddingTop">@dimen/margin_medium</item>
+    <item name="android:paddingBottom">@dimen/margin_medium</item>
+    <item name="android:paddingLeft">@dimen/page_margin</item>
+    <item name="android:paddingRight">@dimen/page_margin</item>
+    <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    <item name="android:lineSpacingMultiplier">1.1</item>
+  </style>
+
+  <style name="FullscreenTheme">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@color/hdr</item>
+    <item name="android:statusBarColor">@color/black</item>
+    <item name="android:navigationBarColor">@color/black</item>
+    <item name="android:color">@color/bg</item>
+    <item name="android:windowIsTranslucent">false</item>
+    <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+    <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    <item name="android:windowTranslucentStatus">false</item>
+    <item name="android:windowTranslucentNavigation">false</item>
+  </style>
+ 
+
+  <style name="DEREXCFullscreenTheme" parent="android:Theme.DeviceDefault.NoActionBar.Fullscreen">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@drawable/launch_main</item>
+    <item name="android:statusBarColor">@color/ablack</item>
+    <item name="android:navigationBarColor">@color/ablack</item>
+    <item name="android:windowTranslucentStatus">false</item>
+    <item name="android:windowTranslucentNavigation">false</item>
+    <item name="android:windowAnimationStyle">@style/SlideAnimation</item>
+  </style>
+
+  <style name="SlideAnimation" parent="android:style/Animation.Activity">
+    <item name="android:activityOpenEnterAnimation">@anim/bottom_up</item>
+    <item name="android:activityOpenExitAnimation">@null</item>
+    <item name="android:activityCloseEnterAnimation">@null</item>
+    <item name="android:activityCloseExitAnimation">@null</item>
+  </style>
+
+  
+  <declare-styleable name="ButtonBarContainerTheme">
+    <attr name="metaButtonBarStyle" format="reference" />
+    <attr name="metaButtonBarButtonStyle" format="reference" />
+  </declare-styleable>
+
+
+
+  <style name="xxxAppTheme" parent="android:Theme.Wallpaper.NoTitleBar.Fullscreen" />
+
+  <style name="EXCFullscreenTheme" parent="android:Theme.DeviceDefault.NoActionBar.Fullscreen">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@color/black_overlay</item>
+    <item name="android:statusBarColor">@color/black_overlay</item>
+    <item name="android:navigationBarColor">@color/black_overlay</item>
+    <item name="android:color">@color/black_overlay</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">false</item>
+  </style>
+
+  <style name="oldDEREXCFullscreenTheme" parent="android:Theme.DeviceDefault.NoActionBar.Fullscreen">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@color/hdr</item>
+    <item name="android:background">@color/hdr</item>
+    <item name="android:statusBarColor">@color/bg</item>
+    <item name="android:navigationBarColor">@color/bg</item>
+    <item name="android:color">@color/bg</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">false</item>
+  </style>
+
+  <style name="xxxEXCFullscreenTheme" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
+  </style>
+</resources>

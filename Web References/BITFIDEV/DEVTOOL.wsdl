@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://bitfi.com/dataservices/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://bitfi.com/dataservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://bitfi.com/dataservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetNoxMessages">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNoxMessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNoxMessagesResult" type="tns:ArrayOfNoxMessagesBasic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNoxMessagesBasic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NoxMessagesBasic" nillable="true" type="tns:NoxMessagesBasic" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSupportArticleByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LineID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSupportArticleByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSupportArticleByIDResult" type="tns:SupportArticle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSupportTagList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSupportTagListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSupportTagListResult" type="tns:ArrayOfNoxMessagesBasic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_AddSuppotArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HexKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleSubTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleTag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleContent_Base64" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_AddSuppotArticleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="POST_AddSuppotArticleResult" type="tns:TxnResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TxnResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="error_message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PubKey_RIPEMD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProfileType" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdminSignatureOfPubKeyMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddProfileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertFromRIPEMD_ToBase58">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PubKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertFromRIPEMD_ToBase58Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConvertFromRIPEMD_ToBase58Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertFromBase58_ToRIPEMD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PubKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertFromBase58_ToRIPEMDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConvertFromBase58_ToRIPEMDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignMessageTestTool_Base58Key">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Base58Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignMessageTestTool_Base58KeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignMessageTestTool_Base58KeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignMessageTestTool_HexKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HexKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignMessageTestTool_HexKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignMessageTestTool_HexKeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_AddDownload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HexKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_AddDownloadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="POST_AddDownloadResult" type="tns:TxnResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_ChangeDisplayStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HexKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TxnID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DisplayInList" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_ChangeDisplayStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="POST_ChangeDisplayStatusResult" type="tns:TxnResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_AddArticleTestTool">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HexKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleSubTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleTag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ArticleContent_Base64" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="POST_AddArticleTestToolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="POST_AddArticleTestToolResult" type="tns:TxnResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBTCUSDRate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="round" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBTCUSDRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBTCUSDRateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfNoxMessagesBasic" nillable="true" type="tns:ArrayOfNoxMessagesBasic" />
+      <s:element name="SupportArticle" nillable="true" type="tns:SupportArticle" />
+      <s:element name="TxnResponse" nillable="true" type="tns:TxnResponse" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:complexType name="SupportArticle">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Message" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Signature" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Title" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tag" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NoxMessagesBasic">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MobMessage" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineID" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetNoxMessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNoxMessages" />
+  </wsdl:message>
+  <wsdl:message name="GetNoxMessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNoxMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportArticleByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSupportArticleByID" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportArticleByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSupportArticleByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportTagListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSupportTagList" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportTagListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSupportTagListResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddSuppotArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:POST_AddSuppotArticle" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddSuppotArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:POST_AddSuppotArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:AddProfile" />
+  </wsdl:message>
+  <wsdl:message name="AddProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:AddProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromRIPEMD_ToBase58SoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertFromRIPEMD_ToBase58" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromRIPEMD_ToBase58SoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertFromRIPEMD_ToBase58Response" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromBase58_ToRIPEMDSoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertFromBase58_ToRIPEMD" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromBase58_ToRIPEMDSoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertFromBase58_ToRIPEMDResponse" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_Base58KeySoapIn">
+    <wsdl:part name="parameters" element="tns:SignMessageTestTool_Base58Key" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_Base58KeySoapOut">
+    <wsdl:part name="parameters" element="tns:SignMessageTestTool_Base58KeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_HexKeySoapIn">
+    <wsdl:part name="parameters" element="tns:SignMessageTestTool_HexKey" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_HexKeySoapOut">
+    <wsdl:part name="parameters" element="tns:SignMessageTestTool_HexKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddDownloadSoapIn">
+    <wsdl:part name="parameters" element="tns:POST_AddDownload" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddDownloadSoapOut">
+    <wsdl:part name="parameters" element="tns:POST_AddDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_ChangeDisplayStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:POST_ChangeDisplayStatus" />
+  </wsdl:message>
+  <wsdl:message name="POST_ChangeDisplayStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:POST_ChangeDisplayStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddArticleTestToolSoapIn">
+    <wsdl:part name="parameters" element="tns:POST_AddArticleTestTool" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddArticleTestToolSoapOut">
+    <wsdl:part name="parameters" element="tns:POST_AddArticleTestToolResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBTCUSDRateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBTCUSDRate" />
+  </wsdl:message>
+  <wsdl:message name="GetBTCUSDRateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBTCUSDRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNoxMessagesHttpGetIn" />
+  <wsdl:message name="GetNoxMessagesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNoxMessagesBasic" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportArticleByIDHttpGetIn">
+    <wsdl:part name="LineID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportArticleByIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:SupportArticle" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportTagListHttpGetIn" />
+  <wsdl:message name="GetSupportTagListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNoxMessagesBasic" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddSuppotArticleHttpGetIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="ArticleTitle" type="s:string" />
+    <wsdl:part name="ArticleSubTitle" type="s:string" />
+    <wsdl:part name="ArticleDescription" type="s:string" />
+    <wsdl:part name="ArticleTag" type="s:string" />
+    <wsdl:part name="ArticleContent_Base64" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddSuppotArticleHttpGetOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddProfileHttpGetIn">
+    <wsdl:part name="PubKey_RIPEMD" type="s:string" />
+    <wsdl:part name="ProfileName" type="s:string" />
+    <wsdl:part name="ProfileType" type="s:string" />
+    <wsdl:part name="ProfileURL" type="s:string" />
+    <wsdl:part name="AdminSignatureOfPubKeyMsg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddProfileHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromRIPEMD_ToBase58HttpGetIn">
+    <wsdl:part name="PubKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromRIPEMD_ToBase58HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromBase58_ToRIPEMDHttpGetIn">
+    <wsdl:part name="PubKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromBase58_ToRIPEMDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_Base58KeyHttpGetIn">
+    <wsdl:part name="Base58Key" type="s:string" />
+    <wsdl:part name="Msg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_Base58KeyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_HexKeyHttpGetIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="Msg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_HexKeyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddDownloadHttpGetIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="Tag" type="s:string" />
+    <wsdl:part name="Description" type="s:string" />
+    <wsdl:part name="DownloadURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddDownloadHttpGetOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_ChangeDisplayStatusHttpGetIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="TxnID" type="s:string" />
+    <wsdl:part name="DisplayInList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_ChangeDisplayStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddArticleTestToolHttpGetIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="ArticleTitle" type="s:string" />
+    <wsdl:part name="ArticleSubTitle" type="s:string" />
+    <wsdl:part name="ArticleDescription" type="s:string" />
+    <wsdl:part name="ArticleTag" type="s:string" />
+    <wsdl:part name="ArticleContent_Base64" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddArticleTestToolHttpGetOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBTCUSDRateHttpGetIn">
+    <wsdl:part name="round" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBTCUSDRateHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetNoxMessagesHttpPostIn" />
+  <wsdl:message name="GetNoxMessagesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNoxMessagesBasic" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportArticleByIDHttpPostIn">
+    <wsdl:part name="LineID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportArticleByIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:SupportArticle" />
+  </wsdl:message>
+  <wsdl:message name="GetSupportTagListHttpPostIn" />
+  <wsdl:message name="GetSupportTagListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNoxMessagesBasic" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddSuppotArticleHttpPostIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="ArticleTitle" type="s:string" />
+    <wsdl:part name="ArticleSubTitle" type="s:string" />
+    <wsdl:part name="ArticleDescription" type="s:string" />
+    <wsdl:part name="ArticleTag" type="s:string" />
+    <wsdl:part name="ArticleContent_Base64" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddSuppotArticleHttpPostOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddProfileHttpPostIn">
+    <wsdl:part name="PubKey_RIPEMD" type="s:string" />
+    <wsdl:part name="ProfileName" type="s:string" />
+    <wsdl:part name="ProfileType" type="s:string" />
+    <wsdl:part name="ProfileURL" type="s:string" />
+    <wsdl:part name="AdminSignatureOfPubKeyMsg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddProfileHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromRIPEMD_ToBase58HttpPostIn">
+    <wsdl:part name="PubKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromRIPEMD_ToBase58HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromBase58_ToRIPEMDHttpPostIn">
+    <wsdl:part name="PubKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConvertFromBase58_ToRIPEMDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_Base58KeyHttpPostIn">
+    <wsdl:part name="Base58Key" type="s:string" />
+    <wsdl:part name="Msg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_Base58KeyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_HexKeyHttpPostIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="Msg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignMessageTestTool_HexKeyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddDownloadHttpPostIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="Tag" type="s:string" />
+    <wsdl:part name="Description" type="s:string" />
+    <wsdl:part name="DownloadURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddDownloadHttpPostOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_ChangeDisplayStatusHttpPostIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="TxnID" type="s:string" />
+    <wsdl:part name="DisplayInList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_ChangeDisplayStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddArticleTestToolHttpPostIn">
+    <wsdl:part name="HexKey" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="ArticleTitle" type="s:string" />
+    <wsdl:part name="ArticleSubTitle" type="s:string" />
+    <wsdl:part name="ArticleDescription" type="s:string" />
+    <wsdl:part name="ArticleTag" type="s:string" />
+    <wsdl:part name="ArticleContent_Base64" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="POST_AddArticleTestToolHttpPostOut">
+    <wsdl:part name="Body" element="tns:TxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBTCUSDRateHttpPostIn">
+    <wsdl:part name="round" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBTCUSDRateHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="DEVTOOLSoap">
+    <wsdl:operation name="GetNoxMessages">
+      <wsdl:input message="tns:GetNoxMessagesSoapIn" />
+      <wsdl:output message="tns:GetNoxMessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportArticleByID">
+      <wsdl:input message="tns:GetSupportArticleByIDSoapIn" />
+      <wsdl:output message="tns:GetSupportArticleByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportTagList">
+      <wsdl:input message="tns:GetSupportTagListSoapIn" />
+      <wsdl:output message="tns:GetSupportTagListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddSuppotArticle">
+      <wsdl:input message="tns:POST_AddSuppotArticleSoapIn" />
+      <wsdl:output message="tns:POST_AddSuppotArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProfile">
+      <wsdl:input message="tns:AddProfileSoapIn" />
+      <wsdl:output message="tns:AddProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromRIPEMD_ToBase58">
+      <wsdl:input message="tns:ConvertFromRIPEMD_ToBase58SoapIn" />
+      <wsdl:output message="tns:ConvertFromRIPEMD_ToBase58SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromBase58_ToRIPEMD">
+      <wsdl:input message="tns:ConvertFromBase58_ToRIPEMDSoapIn" />
+      <wsdl:output message="tns:ConvertFromBase58_ToRIPEMDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_Base58Key">
+      <wsdl:input message="tns:SignMessageTestTool_Base58KeySoapIn" />
+      <wsdl:output message="tns:SignMessageTestTool_Base58KeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_HexKey">
+      <wsdl:input message="tns:SignMessageTestTool_HexKeySoapIn" />
+      <wsdl:output message="tns:SignMessageTestTool_HexKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddDownload">
+      <wsdl:input message="tns:POST_AddDownloadSoapIn" />
+      <wsdl:output message="tns:POST_AddDownloadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_ChangeDisplayStatus">
+      <wsdl:input message="tns:POST_ChangeDisplayStatusSoapIn" />
+      <wsdl:output message="tns:POST_ChangeDisplayStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddArticleTestTool">
+      <wsdl:input message="tns:POST_AddArticleTestToolSoapIn" />
+      <wsdl:output message="tns:POST_AddArticleTestToolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBTCUSDRate">
+      <wsdl:input message="tns:GetBTCUSDRateSoapIn" />
+      <wsdl:output message="tns:GetBTCUSDRateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DEVTOOLHttpGet">
+    <wsdl:operation name="GetNoxMessages">
+      <wsdl:input message="tns:GetNoxMessagesHttpGetIn" />
+      <wsdl:output message="tns:GetNoxMessagesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportArticleByID">
+      <wsdl:input message="tns:GetSupportArticleByIDHttpGetIn" />
+      <wsdl:output message="tns:GetSupportArticleByIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportTagList">
+      <wsdl:input message="tns:GetSupportTagListHttpGetIn" />
+      <wsdl:output message="tns:GetSupportTagListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddSuppotArticle">
+      <wsdl:input message="tns:POST_AddSuppotArticleHttpGetIn" />
+      <wsdl:output message="tns:POST_AddSuppotArticleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProfile">
+      <wsdl:input message="tns:AddProfileHttpGetIn" />
+      <wsdl:output message="tns:AddProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromRIPEMD_ToBase58">
+      <wsdl:input message="tns:ConvertFromRIPEMD_ToBase58HttpGetIn" />
+      <wsdl:output message="tns:ConvertFromRIPEMD_ToBase58HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromBase58_ToRIPEMD">
+      <wsdl:input message="tns:ConvertFromBase58_ToRIPEMDHttpGetIn" />
+      <wsdl:output message="tns:ConvertFromBase58_ToRIPEMDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_Base58Key">
+      <wsdl:input message="tns:SignMessageTestTool_Base58KeyHttpGetIn" />
+      <wsdl:output message="tns:SignMessageTestTool_Base58KeyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_HexKey">
+      <wsdl:input message="tns:SignMessageTestTool_HexKeyHttpGetIn" />
+      <wsdl:output message="tns:SignMessageTestTool_HexKeyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddDownload">
+      <wsdl:input message="tns:POST_AddDownloadHttpGetIn" />
+      <wsdl:output message="tns:POST_AddDownloadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_ChangeDisplayStatus">
+      <wsdl:input message="tns:POST_ChangeDisplayStatusHttpGetIn" />
+      <wsdl:output message="tns:POST_ChangeDisplayStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddArticleTestTool">
+      <wsdl:input message="tns:POST_AddArticleTestToolHttpGetIn" />
+      <wsdl:output message="tns:POST_AddArticleTestToolHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBTCUSDRate">
+      <wsdl:input message="tns:GetBTCUSDRateHttpGetIn" />
+      <wsdl:output message="tns:GetBTCUSDRateHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DEVTOOLHttpPost">
+    <wsdl:operation name="GetNoxMessages">
+      <wsdl:input message="tns:GetNoxMessagesHttpPostIn" />
+      <wsdl:output message="tns:GetNoxMessagesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportArticleByID">
+      <wsdl:input message="tns:GetSupportArticleByIDHttpPostIn" />
+      <wsdl:output message="tns:GetSupportArticleByIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportTagList">
+      <wsdl:input message="tns:GetSupportTagListHttpPostIn" />
+      <wsdl:output message="tns:GetSupportTagListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddSuppotArticle">
+      <wsdl:input message="tns:POST_AddSuppotArticleHttpPostIn" />
+      <wsdl:output message="tns:POST_AddSuppotArticleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProfile">
+      <wsdl:input message="tns:AddProfileHttpPostIn" />
+      <wsdl:output message="tns:AddProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromRIPEMD_ToBase58">
+      <wsdl:input message="tns:ConvertFromRIPEMD_ToBase58HttpPostIn" />
+      <wsdl:output message="tns:ConvertFromRIPEMD_ToBase58HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromBase58_ToRIPEMD">
+      <wsdl:input message="tns:ConvertFromBase58_ToRIPEMDHttpPostIn" />
+      <wsdl:output message="tns:ConvertFromBase58_ToRIPEMDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_Base58Key">
+      <wsdl:input message="tns:SignMessageTestTool_Base58KeyHttpPostIn" />
+      <wsdl:output message="tns:SignMessageTestTool_Base58KeyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_HexKey">
+      <wsdl:input message="tns:SignMessageTestTool_HexKeyHttpPostIn" />
+      <wsdl:output message="tns:SignMessageTestTool_HexKeyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddDownload">
+      <wsdl:input message="tns:POST_AddDownloadHttpPostIn" />
+      <wsdl:output message="tns:POST_AddDownloadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_ChangeDisplayStatus">
+      <wsdl:input message="tns:POST_ChangeDisplayStatusHttpPostIn" />
+      <wsdl:output message="tns:POST_ChangeDisplayStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddArticleTestTool">
+      <wsdl:input message="tns:POST_AddArticleTestToolHttpPostIn" />
+      <wsdl:output message="tns:POST_AddArticleTestToolHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBTCUSDRate">
+      <wsdl:input message="tns:GetBTCUSDRateHttpPostIn" />
+      <wsdl:output message="tns:GetBTCUSDRateHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DEVTOOLSoap" type="tns:DEVTOOLSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNoxMessages">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetNoxMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportArticleByID">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetSupportArticleByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportTagList">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetSupportTagList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddSuppotArticle">
+      <soap:operation soapAction="https://bitfi.com/dataservices/POST_AddSuppotArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProfile">
+      <soap:operation soapAction="https://bitfi.com/dataservices/AddProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromRIPEMD_ToBase58">
+      <soap:operation soapAction="https://bitfi.com/dataservices/ConvertFromRIPEMD_ToBase58" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromBase58_ToRIPEMD">
+      <soap:operation soapAction="https://bitfi.com/dataservices/ConvertFromBase58_ToRIPEMD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_Base58Key">
+      <soap:operation soapAction="https://bitfi.com/dataservices/SignMessageTestTool_Base58Key" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_HexKey">
+      <soap:operation soapAction="https://bitfi.com/dataservices/SignMessageTestTool_HexKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddDownload">
+      <soap:operation soapAction="https://bitfi.com/dataservices/POST_AddDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_ChangeDisplayStatus">
+      <soap:operation soapAction="https://bitfi.com/dataservices/POST_ChangeDisplayStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddArticleTestTool">
+      <soap:operation soapAction="https://bitfi.com/dataservices/POST_AddArticleTestTool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBTCUSDRate">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetBTCUSDRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DEVTOOLSoap12" type="tns:DEVTOOLSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNoxMessages">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetNoxMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportArticleByID">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetSupportArticleByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportTagList">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetSupportTagList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddSuppotArticle">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/POST_AddSuppotArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProfile">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/AddProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromRIPEMD_ToBase58">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/ConvertFromRIPEMD_ToBase58" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromBase58_ToRIPEMD">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/ConvertFromBase58_ToRIPEMD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_Base58Key">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/SignMessageTestTool_Base58Key" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_HexKey">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/SignMessageTestTool_HexKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddDownload">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/POST_AddDownload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_ChangeDisplayStatus">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/POST_ChangeDisplayStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddArticleTestTool">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/POST_AddArticleTestTool" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBTCUSDRate">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetBTCUSDRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DEVTOOLHttpGet" type="tns:DEVTOOLHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetNoxMessages">
+      <http:operation location="/GetNoxMessages" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportArticleByID">
+      <http:operation location="/GetSupportArticleByID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportTagList">
+      <http:operation location="/GetSupportTagList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddSuppotArticle">
+      <http:operation location="/POST_AddSuppotArticle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProfile">
+      <http:operation location="/AddProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromRIPEMD_ToBase58">
+      <http:operation location="/ConvertFromRIPEMD_ToBase58" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromBase58_ToRIPEMD">
+      <http:operation location="/ConvertFromBase58_ToRIPEMD" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_Base58Key">
+      <http:operation location="/SignMessageTestTool_Base58Key" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_HexKey">
+      <http:operation location="/SignMessageTestTool_HexKey" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddDownload">
+      <http:operation location="/POST_AddDownload" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_ChangeDisplayStatus">
+      <http:operation location="/POST_ChangeDisplayStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddArticleTestTool">
+      <http:operation location="/POST_AddArticleTestTool" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBTCUSDRate">
+      <http:operation location="/GetBTCUSDRate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DEVTOOLHttpPost" type="tns:DEVTOOLHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetNoxMessages">
+      <http:operation location="/GetNoxMessages" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportArticleByID">
+      <http:operation location="/GetSupportArticleByID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportTagList">
+      <http:operation location="/GetSupportTagList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddSuppotArticle">
+      <http:operation location="/POST_AddSuppotArticle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProfile">
+      <http:operation location="/AddProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromRIPEMD_ToBase58">
+      <http:operation location="/ConvertFromRIPEMD_ToBase58" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertFromBase58_ToRIPEMD">
+      <http:operation location="/ConvertFromBase58_ToRIPEMD" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_Base58Key">
+      <http:operation location="/SignMessageTestTool_Base58Key" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignMessageTestTool_HexKey">
+      <http:operation location="/SignMessageTestTool_HexKey" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddDownload">
+      <http:operation location="/POST_AddDownload" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_ChangeDisplayStatus">
+      <http:operation location="/POST_ChangeDisplayStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="POST_AddArticleTestTool">
+      <http:operation location="/POST_AddArticleTestTool" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBTCUSDRate">
+      <http:operation location="/GetBTCUSDRate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DEVTOOL">
+    <wsdl:port name="DEVTOOLSoap" binding="tns:DEVTOOLSoap">
+      <soap:address location="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX" />
+    </wsdl:port>
+    <wsdl:port name="DEVTOOLSoap12" binding="tns:DEVTOOLSoap12">
+      <soap12:address location="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX" />
+    </wsdl:port>
+    <wsdl:port name="DEVTOOLHttpGet" binding="tns:DEVTOOLHttpGet">
+      <http:address location="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX" />
+    </wsdl:port>
+    <wsdl:port name="DEVTOOLHttpPost" binding="tns:DEVTOOLHttpPost">
+      <http:address location="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

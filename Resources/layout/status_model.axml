@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/bg">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/logo_lg"
+android:layout_marginTop="-140dp"
+android:layout_marginLeft="-65dp"
+android:paddingLeft="65dp"
+android:paddingTop="140dp"
+		android:orientation="vertical">
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="visible"
+			
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/status_model_title"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="15dp"
+				android:paddingLeft="10dp"
+				android:textColor="@color/lg"
+				android:textSize="14sp"
+				android:textStyle="bold"
+				android:typeface="normal"/>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="70dp"
+				android:paddingLeft="10dp"
+				android:paddingRight="10dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
+				android:background="@color/hdr">
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					android:gravity="center_vertical">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text="STATUS"
+						android:textColor="#3e5359"
+						android:textSize="12dp" />
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/status_model_tv_updatestatus"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text=""
+						android:textColor="@color/lg"
+						android:textSize="12dp" />
+				</LinearLayout>
+				<LinearLayout
+					android:layout_alignParentRight="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<Button
+						android:id="@+id/status_model_button_p"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:background="@android:color/transparent"
+						android:text="YES, REVIEW"
+						android:layout_marginLeft="25dp"
+						android:layout_marginRight="25dp"
+						android:textAlignment="viewEnd"
+					android:textColor="@color/lg"
+						android:textSize="16dp"
+						android:textStyle="bold"
+						android:typeface="normal">
+					</Button>
+
+				</LinearLayout>
+
+			</RelativeLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+			android:layout_weight="1"
+				
+					
+				>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:backgroundTint="@color/bar3"
+					android:background="@color/black_overlay"
+					android:paddingLeft="10dp"
+					android:paddingRight="10dp"
+					android:paddingBottom="15dp"
+					android:paddingTop="16dp"
+					android:layout_marginTop="0dp">
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="35dp"
+						android:layout_marginTop="0dp"
+						android:orientation="vertical">
+						<Button
+							android:id="@+id/status_model_button_firmaware"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:background="@android:color/transparent"
+							android:text="Device Firmware"
+							android:textAlignment="viewStart"
+							android:textAllCaps="false"
+							android:textColor="@color/colorPrimary"
+							android:textSize="20dp"
+							
+						>
+						</Button>
+					</LinearLayout>
+					<TextView
+						android:id="@+id/status_model_button_firmawaretv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text="current version and hardware key"
+						android:textColor="@color/lgsm"
+						android:paddingLeft="1dp"
+						android:textSize="11dp" />
+				</LinearLayout>
+
+
+				
+
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:backgroundTint="@color/bar3"
+					android:background="@color/black_overlay"
+					android:paddingLeft="10dp"
+					android:paddingRight="10dp"
+					android:paddingBottom="15dp"
+					android:paddingTop="9dp"
+					android:layout_marginTop="0.3dp">
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="35dp"
+						android:layout_marginTop="0dp"
+						android:orientation="vertical">
+						<Button
+							android:id="@+id/status_model_button_brightness"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:background="@android:color/transparent"
+							android:text="Screen Brightness"
+							android:textAlignment="viewStart"
+							android:textColor="@color/colorPrimary"
+							android:textSize="20dp"
+							android:textAllCaps="false"
+							
+						>
+						</Button>
+					</LinearLayout>
+					<TextView
+						android:id="@+id/status_model_button_brightnesstv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="1dp"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text="change device standard for all views"
+						android:textColor="@color/lgsm"
+						android:textSize="11dp" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:backgroundTint="@color/bar3"
+					android:background="@color/black_overlay"
+					android:paddingLeft="10dp"
+					android:paddingRight="12dp"
+					android:paddingBottom="15dp"
+					android:paddingTop="9dp"
+					android:layout_marginTop="0.3dp">
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="35dp"
+						android:layout_marginTop="0dp"
+						android:orientation="horizontal">
+						<Button
+							android:id="@+id/status_model_button_vibe"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:background="@android:color/transparent"
+							android:text="Haptic Feedback"
+							android:textAlignment="viewStart"
+							android:textColor="@color/colorPrimary"
+							android:textSize="20dp"
+							android:textAllCaps="false"
+							
+						>
+						</Button>
+						<Switch
+							android:id="@+id/status_model_vibe_switch1"
+							android:layout_width="match_parent"
+							android:layout_height="32dp"
+							
+							android:checked="true">
+						</Switch>
+					</LinearLayout>
+					<TextView
+						android:id="@+id/status_model_button_vibetv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="1dp"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text="vibrate when typing secret phrase"
+						android:textColor="@color/lgsm"
+						android:textSize="11dp" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+			android:backgroundTint="@color/bar3"
+					android:background="@color/black_overlay"
+					
+					android:paddingLeft="10dp"
+					android:paddingRight="12dp"
+					android:paddingBottom="43dp"
+					android:paddingTop="9dp"
+					android:layout_marginTop="0.3dp">
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="35dp"
+						android:layout_marginTop="0dp"
+						android:orientation="horizontal">
+						<Button
+							android:id="@+id/status_model_button_download"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:background="@android:color/transparent"							
+							android:text="Allow Download"					
+							android:textColor="@color/colorPrimary"
+							android:textSize="20dp"
+							android:textAllCaps="false">
+						</Button>
+						<Switch
+							android:id="@+id/status_model_download_switch"
+							android:layout_width="match_parent"
+							android:layout_height="32dp"									
+							android:checked="true">
+						</Switch>
+					</LinearLayout>
+					<TextView
+						android:id="@+id/status_model_button_downloadtv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="1dp"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text="fetch update then prompt to install"
+					android:textColor="@color/lgsm"
+						android:textSize="11dp" />
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			
+			>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="80dp"
+				android:orientation="vertical"
+				android:paddingTop="10dp"
+				
+					android:backgroundTint="@color/black_overlay"
+					android:background="@color/black_overlay"	
+				
+				android:layout_alignParentBottom="true">
+				
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					
+					
+					android:paddingLeft="10.5dp"
+					android:paddingRight="20dp"
+					android:paddingTop="0dp"
+					android:orientation="horizontal">
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:orientation="vertical"
+						android:paddingBottom="0dp"
+						android:gravity="center_vertical">
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/status_model_tv_updatestatusM1"
+							android:textStyle="normal"
+							android:letterSpacing="0.08"
+							android:paddingLeft="0dp"
+							android:text="PC UPDATE"
+							android:textColor="@color/lgsm"
+							android:textSize="12dp" />
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/status_model_tv_updatestatusM2"
+							android:textStyle="normal"
+							android:letterSpacing="0.08"
+						
+							android:text="NETWORK"
+							android:textColor="@color/colorPrimary"
+							android:textSize="12dp" />
+
+					</LinearLayout>
+
+					<Button
+						android:id="@+id/status_model_button_rokits"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:background="@android:color/transparent"
+						android:text="ACCEPT CONNECTION"
+						android:gravity="right"
+					android:textColor="#335b5c"
+						android:textSize="14dp"
+						android:paddingTop="15dp"
+						android:textStyle="bold"
+						android:layout_marginTop="0dp"
+						
+>
+					</Button>
+				</LinearLayout>
+
+
+			</LinearLayout>
+		</RelativeLayout>
+
+	</LinearLayout>
+
+
+
+</LinearLayout>

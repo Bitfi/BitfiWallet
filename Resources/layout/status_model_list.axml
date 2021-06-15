@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal"
+	android:background="@color/bg">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/logo_lg"
+android:layout_marginTop="-140dp"
+android:layout_marginLeft="-65dp"
+android:paddingLeft="65dp"
+android:paddingTop="140dp"
+		android:orientation="vertical">
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:visibility="visible"
+			android:layout_marginBottom="27dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/status_model_list_title2"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="15dp"
+				android:paddingLeft="10dp"
+				android:textColor="@color/lg"
+				android:textSize="14sp"
+				android:textStyle="bold"
+				android:text="DEVICE SYSTEM OVERVIEW"
+				android:typeface="normal"/>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="70dp"
+				android:paddingLeft="10dp"
+				android:paddingRight="10dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
+				android:background="@color/hdr">
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					android:gravity="center_vertical">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text="SHOWING"
+						android:textColor="#3e5359"
+						android:textSize="12dp" />
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/status_model_list_tv2"
+						android:textStyle="normal"
+						android:letterSpacing="0.08"
+						android:text="CURRENT FIRMWARE"
+						android:textColor="@color/lg"
+						android:textSize="12dp" />
+				</LinearLayout>
+				<LinearLayout
+					android:layout_alignParentRight="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<Button
+						android:id="@+id/status_model_list_button_p"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:background="@android:color/transparent"
+						android:text="OK, CLOSE"
+						android:layout_marginLeft="25dp"
+						android:layout_marginRight="25dp"
+						android:textAlignment="viewEnd"
+					android:textColor="@color/lg"
+						android:textSize="16dp"
+						android:textStyle="bold"
+						android:typeface="normal">
+					</Button>
+
+				</LinearLayout>
+
+			</RelativeLayout>
+				
+			<ListView
+				android:id="@android:id/list"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:divider="@android:color/transparent"
+				android:paddingTop="10dp"/>
+				
+		</LinearLayout>
+		</LinearLayout>			
+</LinearLayout>

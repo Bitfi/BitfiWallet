@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://bitfi.com/dataservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://bitfi.com/dataservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://bitfi.com/dataservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetMessageConfig">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMessageConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageConfigResult" type="tns:NoxMessagesConfig" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NoxMessagesConfig">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EndPoint" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WelcomeMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServiceEnabled" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOverviewModel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noxsig" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noxmsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GCMToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TokenMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOverviewModelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOverviewModelResult" type="tns:OverviewViewModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OverviewViewModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OverviewTableViewModel" type="tns:OverviewTableViewModel" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalUsd" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalBtc" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OverviewTableViewModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Wallets" type="tns:ArrayOfWalletList" />
+          <s:element minOccurs="0" maxOccurs="1" name="EthAddr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BtcRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KnownTokensJson" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWalletList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WalletList" nillable="true" type="tns:WalletList" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAddressIndexes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noxsig" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noxmsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GCMToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TokenMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAddressIndexesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAddressIndexesResult" type="tns:ArrayOfNoxAddressReview" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNoxAddressReview">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NoxAddressReview" nillable="true" type="tns:NoxAddressReview" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAddressIndexesV3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noxsig" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noxmsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GCMToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TokenMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAddressIndexesV3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAddressIndexesV3Result" type="tns:NoxAddressReviewV3" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSGATokenForSignIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noxsig" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noxmsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GCMToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyU" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="signatureU" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DisplayCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSGATokenForSignInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSGATokenForSignInResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSGAToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noxsig" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noxmsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GCMToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyU" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="signatureU" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSGATokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSGATokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSGAMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noxsig" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noxmsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pubkeyD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GCMToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSGAMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSGAMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NoxMessagesConfig" nillable="true" type="tns:NoxMessagesConfig" />
+      <s:element name="OverviewViewModel" nillable="true" type="tns:OverviewViewModel" />
+      <s:element name="ArrayOfNoxAddressReview" nillable="true" type="tns:ArrayOfNoxAddressReview" />
+      <s:element name="NoxAddressReviewV3" nillable="true" type="tns:NoxAddressReviewV3" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:complexType name="NoxAddressReview">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Blk" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IndexCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NoxAddresses">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DoSegwit" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewKey" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BlkNet" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BTCBal" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BTCAddress" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HDIndex" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TXNLineID" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfNoxAddresses">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NoxAddresses" nillable="true" type="tns:NoxAddresses" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NoxAddressReviewV3">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AdrReview" nillable="true" type="tns:ArrayOfNoxAddressReview" />
+          <s:element minOccurs="1" maxOccurs="1" name="Addresses" nillable="true" type="tns:ArrayOfNoxAddresses" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WalletList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Currency" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="USD" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorMessage" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMessageConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageConfig" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOverviewModelSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOverviewModel" />
+  </wsdl:message>
+  <wsdl:message name="GetOverviewModelSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOverviewModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAddressIndexes" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAddressIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesV3SoapIn">
+    <wsdl:part name="parameters" element="tns:GetAddressIndexesV3" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesV3SoapOut">
+    <wsdl:part name="parameters" element="tns:GetAddressIndexesV3Response" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenForSignInSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSGATokenForSignIn" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenForSignInSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSGATokenForSignInResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSGAToken" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSGATokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSGAMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSGAMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetSGAMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSGAMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageConfigHttpGetIn" />
+  <wsdl:message name="GetMessageConfigHttpGetOut">
+    <wsdl:part name="Body" element="tns:NoxMessagesConfig" />
+  </wsdl:message>
+  <wsdl:message name="GetOverviewModelHttpGetIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="TokenMessage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOverviewModelHttpGetOut">
+    <wsdl:part name="Body" element="tns:OverviewViewModel" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesHttpGetIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="TokenMessage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNoxAddressReview" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesV3HttpGetIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="TokenMessage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesV3HttpGetOut">
+    <wsdl:part name="Body" element="tns:NoxAddressReviewV3" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenForSignInHttpGetIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="pubkeyU" type="s:string" />
+    <wsdl:part name="signatureU" type="s:string" />
+    <wsdl:part name="DisplayCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenForSignInHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenHttpGetIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="pubkeyU" type="s:string" />
+    <wsdl:part name="signatureU" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGAMessageHttpGetIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGAMessageHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageConfigHttpPostIn" />
+  <wsdl:message name="GetMessageConfigHttpPostOut">
+    <wsdl:part name="Body" element="tns:NoxMessagesConfig" />
+  </wsdl:message>
+  <wsdl:message name="GetOverviewModelHttpPostIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="TokenMessage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOverviewModelHttpPostOut">
+    <wsdl:part name="Body" element="tns:OverviewViewModel" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesHttpPostIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="TokenMessage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfNoxAddressReview" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesV3HttpPostIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="TokenMessage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressIndexesV3HttpPostOut">
+    <wsdl:part name="Body" element="tns:NoxAddressReviewV3" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenForSignInHttpPostIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="pubkeyU" type="s:string" />
+    <wsdl:part name="signatureU" type="s:string" />
+    <wsdl:part name="DisplayCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenForSignInHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenHttpPostIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+    <wsdl:part name="pubkeyU" type="s:string" />
+    <wsdl:part name="signatureU" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGATokenHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGAMessageHttpPostIn">
+    <wsdl:part name="noxsig" type="s:string" />
+    <wsdl:part name="noxmsg" type="s:string" />
+    <wsdl:part name="pubkeyD" type="s:string" />
+    <wsdl:part name="GCMToken" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSGAMessageHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="SGADWSSoap">
+    <wsdl:operation name="GetMessageConfig">
+      <wsdl:input message="tns:GetMessageConfigSoapIn" />
+      <wsdl:output message="tns:GetMessageConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOverviewModel">
+      <wsdl:input message="tns:GetOverviewModelSoapIn" />
+      <wsdl:output message="tns:GetOverviewModelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexes">
+      <wsdl:input message="tns:GetAddressIndexesSoapIn" />
+      <wsdl:output message="tns:GetAddressIndexesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexesV3">
+      <wsdl:input message="tns:GetAddressIndexesV3SoapIn" />
+      <wsdl:output message="tns:GetAddressIndexesV3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGATokenForSignIn">
+      <wsdl:input message="tns:GetSGATokenForSignInSoapIn" />
+      <wsdl:output message="tns:GetSGATokenForSignInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAToken">
+      <wsdl:input message="tns:GetSGATokenSoapIn" />
+      <wsdl:output message="tns:GetSGATokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAMessage">
+      <wsdl:input message="tns:GetSGAMessageSoapIn" />
+      <wsdl:output message="tns:GetSGAMessageSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SGADWSHttpGet">
+    <wsdl:operation name="GetMessageConfig">
+      <wsdl:input message="tns:GetMessageConfigHttpGetIn" />
+      <wsdl:output message="tns:GetMessageConfigHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOverviewModel">
+      <wsdl:input message="tns:GetOverviewModelHttpGetIn" />
+      <wsdl:output message="tns:GetOverviewModelHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexes">
+      <wsdl:input message="tns:GetAddressIndexesHttpGetIn" />
+      <wsdl:output message="tns:GetAddressIndexesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexesV3">
+      <wsdl:input message="tns:GetAddressIndexesV3HttpGetIn" />
+      <wsdl:output message="tns:GetAddressIndexesV3HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGATokenForSignIn">
+      <wsdl:input message="tns:GetSGATokenForSignInHttpGetIn" />
+      <wsdl:output message="tns:GetSGATokenForSignInHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAToken">
+      <wsdl:input message="tns:GetSGATokenHttpGetIn" />
+      <wsdl:output message="tns:GetSGATokenHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAMessage">
+      <wsdl:input message="tns:GetSGAMessageHttpGetIn" />
+      <wsdl:output message="tns:GetSGAMessageHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SGADWSHttpPost">
+    <wsdl:operation name="GetMessageConfig">
+      <wsdl:input message="tns:GetMessageConfigHttpPostIn" />
+      <wsdl:output message="tns:GetMessageConfigHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOverviewModel">
+      <wsdl:input message="tns:GetOverviewModelHttpPostIn" />
+      <wsdl:output message="tns:GetOverviewModelHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexes">
+      <wsdl:input message="tns:GetAddressIndexesHttpPostIn" />
+      <wsdl:output message="tns:GetAddressIndexesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexesV3">
+      <wsdl:input message="tns:GetAddressIndexesV3HttpPostIn" />
+      <wsdl:output message="tns:GetAddressIndexesV3HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGATokenForSignIn">
+      <wsdl:input message="tns:GetSGATokenForSignInHttpPostIn" />
+      <wsdl:output message="tns:GetSGATokenForSignInHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAToken">
+      <wsdl:input message="tns:GetSGATokenHttpPostIn" />
+      <wsdl:output message="tns:GetSGATokenHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAMessage">
+      <wsdl:input message="tns:GetSGAMessageHttpPostIn" />
+      <wsdl:output message="tns:GetSGAMessageHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SGADWSSoap" type="tns:SGADWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMessageConfig">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetMessageConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverviewModel">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetOverviewModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexes">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetAddressIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexesV3">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetAddressIndexesV3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGATokenForSignIn">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetSGATokenForSignIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAToken">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetSGAToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAMessage">
+      <soap:operation soapAction="https://bitfi.com/dataservices/GetSGAMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SGADWSSoap12" type="tns:SGADWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMessageConfig">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetMessageConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverviewModel">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetOverviewModel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexes">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetAddressIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexesV3">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetAddressIndexesV3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGATokenForSignIn">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetSGATokenForSignIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAToken">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetSGAToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAMessage">
+      <soap12:operation soapAction="https://bitfi.com/dataservices/GetSGAMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SGADWSHttpGet" type="tns:SGADWSHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetMessageConfig">
+      <http:operation location="/GetMessageConfig" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverviewModel">
+      <http:operation location="/GetOverviewModel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexes">
+      <http:operation location="/GetAddressIndexes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexesV3">
+      <http:operation location="/GetAddressIndexesV3" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGATokenForSignIn">
+      <http:operation location="/GetSGATokenForSignIn" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAToken">
+      <http:operation location="/GetSGAToken" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAMessage">
+      <http:operation location="/GetSGAMessage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SGADWSHttpPost" type="tns:SGADWSHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetMessageConfig">
+      <http:operation location="/GetMessageConfig" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverviewModel">
+      <http:operation location="/GetOverviewModel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexes">
+      <http:operation location="/GetAddressIndexes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressIndexesV3">
+      <http:operation location="/GetAddressIndexesV3" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGATokenForSignIn">
+      <http:operation location="/GetSGATokenForSignIn" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAToken">
+      <http:operation location="/GetSGAToken" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSGAMessage">
+      <http:operation location="/GetSGAMessage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SGADWS">
+    <wsdl:port name="SGADWSSoap" binding="tns:SGADWSSoap">
+      <soap:address location="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SGADWSSoap12" binding="tns:SGADWSSoap12">
+      <soap12:address location="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SGADWSHttpGet" binding="tns:SGADWSHttpGet">
+      <http:address location="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SGADWSHttpPost" binding="tns:SGADWSHttpPost">
+      <http:address location="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

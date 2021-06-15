@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:showDividers="none"
+android:layout_marginLeft="0dp"
+android:layout_marginRight="0dp"
+android:layout_marginBottom="0dp"
+android:paddingBottom="0dp"
+android:background="#243338">
+	<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/logo_lgv"
+android:layout_marginTop="-140dp"
+android:layout_marginLeft="-55dp"
+android:paddingLeft="55dp"
+android:paddingTop="140dp"
+android:orientation="vertical"
+>
+
+		<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+			android:backgroundTint="@color/ablack"		
+android:background="@color/black_overlay"
+>
+	<LinearLayout
+android:orientation="horizontal"
+android:layout_width="match_parent"
+android:layout_height="80dp"
+android:paddingBottom="0dp"
+android:paddingLeft="20dp"
+android:paddingTop="10dp"
+android:paddingRight="14dp"
+android:layout_marginLeft="-10dp"
+android:layout_marginRight="-10dp"
+>
+		
+		<LinearLayout
+android:orientation="vertical"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingLeft="7dp"
+android:paddingTop="3dp"
+>
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingLeft="4.2sp"
+android:textStyle="bold"
+android:letterSpacing="0.08"
+android:text="DEVICE ID"
+android:textColor="#3e5359"
+android:textSize="11dp" />			
+<Button
+android:id="@+id/btnWalletID"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingBottom="15dp"
+android:background="@color/black"
+android:text="AAAAAA"
+android:textColor="#3e5359"
+android:textSize="22dp"
+android:capitalize="none"
+android:textAllCaps="false"
+/></LinearLayout><RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingRight="10dp"><LinearLayout
+android:layout_alignParentRight="true"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:showDividers="none"
+android:visibility="visible"
+android:textAlignment="viewEnd"
+android:paddingTop="5dp"><ImageView
+android:id="@+id/imageViewW1"
+android:src="@drawable/ic_icon_wifi"
+android:textAlignment="viewStart"
+android:layout_width="wrap_content"
+android:layout_height="20dp"
+android:paddingRight="10px" /><ImageView
+android:id="@+id/imageViewW2"
+android:src="@drawable/ic_icon_wifi_disabled"
+android:textAlignment="viewStart"
+android:layout_width="wrap_content"
+android:layout_height="20dp"
+android:paddingRight="10px"
+android:visibility="visible" /><ImageView
+android:layout_width="0.5dp"
+android:layout_height="20dp"
+android:background="@color/black"
+android:layout_marginLeft="5dp"
+android:layout_marginRight="5dp" /><ImageView
+android:id="@+id/imageViewB1"
+android:src="@drawable/ic_icon_battery"
+android:layout_marginTop="5dp"
+android:textAlignment="viewStart"
+android:layout_width="24dp"
+android:layout_height="wrap_content"
+android:paddingRight="10px" /><ImageView
+android:id="@+id/imageViewB2"
+android:src="@drawable/ic_icon_battery_on_charge"
+android:layout_marginTop="5dp"
+android:textAlignment="viewStart"
+android:layout_width="24sp"
+android:layout_height="wrap_content"
+android:paddingRight="10px" /><TextView
+android:id="@+id/txtBPercent"
+android:layout_width="wrap_content"
+android:layout_height="18dp"
+android:typeface="normal"
+android:textSize="10sp"
+android:textColor="@color/logoh"
+android:text="20%"
+android:textStyle="normal"
+android:paddingTop="3dp"
+android:layout_marginTop="-0.6dp"
+android:paddingLeft="0dp" /></LinearLayout></RelativeLayout></LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingTop="22dp"
+android:paddingLeft="0dp"
+android:paddingBottom="0dp"
+android:paddingRight="0dp"
+			android:backgroundTint="@color/black_overlay"
+android:background="@color/black_overlay"
+><RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingLeft="12dp"
+><LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingBottom="16dp"
+android:id="@+id/xbtnBalances"
+android:paddingRight="0dp"><LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"><ImageView
+android:src="@drawable/ic_iconwalletbalance"
+android:layout_width="45dp"
+android:layout_height="45dp"
+android:paddingRight="0dp" /><LinearLayout
+android:orientation="vertical"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingLeft="20dp"
+><Button
+android:id="@+id/btnBalances"
+android:layout_width="wrap_content"
+android:layout_height="35dp"
+android:layout_weight="1"
+android:background="@color/black"
+android:text="Account Balance"
+android:textColor="@color/txtwt"
+android:textSize="22dp"
+android:capitalize="none"
+android:textAllCaps="false"
+/><TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:typeface="normal"
+android:textSize="12dp"
+android:textColor="@color/lgdesc"
+android:text="view combined asset balances" /></LinearLayout></LinearLayout></LinearLayout></RelativeLayout>
+			
+
+			
+			<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingLeft="12dp"
+><LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingBottom="16dp"
+android:id="@+id/xbtnAddresses"
+android:paddingTop="14dp"
+android:paddingRight="0dp"><LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"><ImageView
+android:src="@drawable/ic_icons_paymentaddress"
+android:layout_width="45dp"
+android:layout_height="45dp"
+android:paddingRight="0dp" /><LinearLayout
+android:orientation="vertical"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingLeft="20dp"
+><Button
+android:id="@+id/btnAddresses"
+android:layout_width="wrap_content"
+android:layout_height="35dp"
+android:layout_weight="1"
+android:background="@color/black"
+android:text="Receiving Accounts"
+android:textColor="@color/txtwt"
+android:textSize="22dp"
+android:capitalize="none"
+android:textAllCaps="false"
+/><TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:typeface="normal"
+android:textSize="12dp"
+android:textColor="@color/lgdesc"
+android:text="calculate addresses for receiving assets" /></LinearLayout></LinearLayout></LinearLayout></RelativeLayout>
+			
+			
+			<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingLeft="12dp"
+><LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingBottom="16dp"
+android:id="@+id/xbtnMessage"
+android:paddingTop="14dp"
+android:paddingRight="0dp"><LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"><ImageView
+android:src="@drawable/ic_icons_devmessenger_circle"
+android:layout_width="45dp"
+android:layout_height="45dp"
+android:paddingRight="0dp" /><LinearLayout
+android:orientation="vertical"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingLeft="20dp"
+><Button
+android:id="@+id/btnMessage"
+android:layout_width="wrap_content"
+android:layout_height="35dp"
+android:layout_weight="1"
+android:background="@color/black"
+android:text="Private Messages"
+android:textColor="@color/txtwt"
+android:textSize="22dp"
+android:capitalize="none"
+android:textAllCaps="false"
+/><TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:typeface="normal"
+android:textSize="12dp"
+android:textColor="@color/lgdesc"
+android:text="start or join encrypted P2P channels" /></LinearLayout></LinearLayout></LinearLayout></RelativeLayout>
+			
+			
+			<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingLeft="12dp"
+><LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingBottom="16dp"
+android:id="@+id/xbtnWifi"
+android:paddingTop="14dp"
+android:paddingRight="0dp"><LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"><ImageView
+android:src="@drawable/ic_icon_network"
+android:layout_width="45dp"
+android:layout_height="45dp"
+android:paddingRight="0dp" /><LinearLayout
+android:orientation="vertical"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingLeft="20dp"
+><Button
+android:id="@+id/btnWifi"
+android:layout_width="wrap_content"
+android:layout_height="35dp"
+android:layout_weight="1"
+android:background="@color/black"
+android:text="Network Settings"
+android:textColor="@color/txtwt"
+android:textSize="22dp"
+android:capitalize="none"
+android:textAllCaps="false"
+/><TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:typeface="normal"
+android:textSize="12dp"
+android:textColor="@color/lgdesc"
+android:text="connect to your 2.4Ghz WiFi network" /></LinearLayout></LinearLayout></LinearLayout></RelativeLayout>
+		
+			
+			<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingLeft="12dp"
+><LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingBottom="0dp"
+android:id="@+id/xbtnSystem"
+android:paddingTop="14dp"
+android:paddingRight="0dp"><LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"><ImageView
+android:src="@drawable/deviceiddark"
+android:layout_width="45dp"
+android:layout_height="45dp"
+android:paddingRight="0dp" /><LinearLayout
+android:orientation="vertical"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:paddingLeft="20dp"
+><Button
+android:id="@+id/btnSystem"
+android:layout_width="wrap_content"
+android:layout_height="35dp"
+android:layout_weight="1"
+android:background="@color/black"
+android:text="System Firmware"
+android:textColor="@color/txtwt"
+android:textSize="22dp"
+android:capitalize="none"
+android:textAllCaps="false"
+/><TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:typeface="normal"
+android:textSize="12dp"
+android:textColor="@color/lgdesc"
+android:text="check version and perform update" /></LinearLayout></LinearLayout></LinearLayout></RelativeLayout>
+			
+			<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginBottom="0dp"
+android:elevation="0dp">
+				<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_alignParentBottom="true"
+android:elevation="0dp"
+>
+					
+					<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="5dp"
+android:paddingTop="5dp"			
+android:elevation="0dp"
+android:backgroundTint="@color/black_overlay"
+android:background="@color/black_overlay"
+android:paddingRight="14dp"><LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:elevation="0dp"							
+android:layout_alignParentRight="true"
+><TextView
+android:id="@+id/txtNoWifi"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:textStyle="normal"
+android:letterSpacing="0.08"
+android:text=" "
+android:textColor="#3e5359"
+android:textSize="12.2dp" />
+</LinearLayout>
+</RelativeLayout></LinearLayout></RelativeLayout></LinearLayout></LinearLayout>
+	</LinearLayout>

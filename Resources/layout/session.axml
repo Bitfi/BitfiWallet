@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/bar4">
+
+
+	<LinearLayout
+		 android:orientation="vertical"
+		 android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/logo_lgs"
+		android:layout_marginTop="-60dp"
+		android:layout_marginLeft="-75dp">
+	<LinearLayout
+		 android:orientation="vertical"
+		 android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+ 	android:layout_marginTop="60dp"
+		android:layout_marginLeft="75dp"
+		android:layout_marginBottom="0dp">
+
+			 <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+    
+        android:visibility="visible"
+				 android:background="@color/black_overlay"
+        android:orientation="vertical">
+			  <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+					    android:id="@+id/sessionllMessages"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:showDividers="none"
+            android:visibility="visible"
+					android:minHeight="198dp"
+			
+            android:paddingBottom="10dp">
+			  <ScrollView
+        android:id="@+id/sessionmsgSCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+	    android:requiresFadingEdge="vertical"
+    android:fadingEdgeLength="60dp">	
+			<LinearLayout
+	android:id="@+id/sessionmsgLayoutSCROLLER_ID"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+			</LinearLayout> 
+
+			</ScrollView>
+			</LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="0dp"
+				
+        android:paddingTop="0px">
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+		
+            android:orientation="vertical"
+            android:paddingTop="0dp"
+            android:layout_marginLeft="-1.6dp"
+						
+            android:layout_marginRight="-1.5dp">
+		<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="0px"
+            android:paddingTop="0px"
+            android:showDividers="none"
+            android:visibility="visible"
+			android:layout_marginLeft="0dp"
+									 android:background="@color/black_overlay"
+            android:layout_marginBottom="0dp">
+
+		<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+				android:background="@color/bar"
+		
+        android:orientation="horizontal"/>
+
+									<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:showDividers="none"
+				android:visibility="visible"
+			
+			>
+        <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:text="|>"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:textColor="@color/men"
+        android:typeface="monospace"
+		android:layout_marginTop="0dp"
+        android:textStyle="bold"
+		android:layout_marginLeft="10dp"/>
+								<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+			android:gravity="right"	
+			android:paddingRight="8dp">
+									
+									<TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:id="@+id/sessiontglStatus"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="10dp"
+        android:paddingTop="0dp"
+        android:text=""
+        android:textSize="10dp"
+		android:letterSpacing="0.1"
+        android:focusable="false"
+        android:textColor="@color/black3"
+		android:layout_marginTop="0dp"
+        android:textStyle="bold"
+		android:layout_marginLeft="5dp"	/>
+
+										<Button
+						android:id="@+id/sessiontglBtnNode"
+						android:layout_width="55dp"
+						android:layout_height="35dp"
+						android:backgroundTint="@color/space"
+						android:text="NODE"
+						android:textAlignment="center"
+						android:textColor="@color/men"
+						android:textSize="10sp"
+						android:textStyle="normal"
+						android:theme="@style/FullscreenTheme"
+										android:layout_marginLeft="0dp"
+							android:layout_marginRight="0dp"
+			android:paddingStart="0sp"
+						android:paddingEnd="0sp"
+										android:visibility="gone"
+										android:letterSpacing="0.1"
+				/>
+
+										<Button
+						android:id="@+id/sessiontglBtnRecents"
+						android:layout_width="55dp"
+						android:layout_height="35dp"
+						android:backgroundTint="@color/space"
+						android:text="PEER"
+						android:textAlignment="center"
+						android:textColor="@color/men"
+						android:textSize="10sp"
+						android:textStyle="normal"
+						android:theme="@style/FullscreenTheme"
+										android:layout_marginLeft="0dp"
+							android:layout_marginRight="0dp"
+			android:paddingStart="0sp"
+						android:paddingEnd="0sp"
+										android:visibility="gone"
+										android:letterSpacing="0.1"
+				/>
+<Button
+						android:id="@+id/sessiontglBtnBack"
+						android:layout_width="55dp"
+						android:layout_height="35dp"
+						android:backgroundTint="@color/space"
+						android:text="BACK"
+						android:textAlignment="center"
+						android:textColor="@color/men"
+						android:textSize="10sp"
+						android:textStyle="normal"
+						android:theme="@style/FullscreenTheme"
+										android:layout_marginLeft="0dp"
+							android:layout_marginRight="0dp"
+			android:paddingStart="0sp"
+						android:paddingEnd="0sp"
+										android:visibility="gone"
+										android:letterSpacing="0.1"
+									
+				/>
+									<Button
+						android:id="@+id/sessiontglBtnClose"
+						android:layout_width="55dp"
+						android:layout_height="35dp"
+						android:backgroundTint="@color/space"
+						android:text="EXIT"
+						android:textAlignment="center"
+						android:textColor="@color/men"
+						android:textSize="10sp"
+						android:textStyle="normal"
+						android:theme="@style/FullscreenTheme"
+										android:layout_marginLeft="0dp"
+							android:layout_marginRight="0dp"
+			android:paddingStart="0sp"
+						android:paddingEnd="0sp"
+											android:visibility="gone"
+										android:letterSpacing="0.1"
+									
+				/>
+			<Button
+						android:id="@+id/sessiontglBtnInfo"
+						android:layout_width="55dp"
+						android:layout_height="35dp"
+						android:backgroundTint="@color/space"
+						android:text="INFO"
+						android:textAlignment="center"
+						android:textColor="@color/men"
+						android:textSize="10sp"
+						android:textStyle="normal"
+						android:theme="@style/FullscreenTheme"
+										android:layout_marginLeft="0dp"
+							android:layout_marginRight="0dp"
+			android:paddingStart="0sp"
+						android:paddingEnd="0sp"
+											android:visibility="gone"
+										android:letterSpacing="0.1"
+									
+				/>
+
+
+
+					<Button
+						android:id="@+id/sessiontglBtn"
+						android:layout_width="55dp"
+						android:layout_height="35dp"
+						android:backgroundTint="@color/space"
+						android:text="HIDE"
+						android:textAlignment="center"
+						android:textColor="@color/men"
+						android:textSize="10sp"
+						android:textStyle="normal"
+						android:theme="@style/FullscreenTheme"
+										android:layout_marginLeft="0dp"
+							android:layout_marginRight="0dp"
+			android:paddingStart="0sp"
+						android:paddingEnd="0sp"
+										android:visibility="gone"
+										android:letterSpacing="0.1"
+									
+				/>
+	</LinearLayout>
+
+	</LinearLayout>
+						
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+		 android:id="@+id/session_message"					
+		android:layout_marginLeft="12dp" 
+        android:layout_marginTop="14dp"
+        android:paddingLeft="0dp"
+									
+        android:paddingRight="5dp"/>
+						
+
+</LinearLayout>
+      	<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+							 android:id="@+id/sessionKB"
+							android:visibility="visible"
+								
+			>
+
+
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"	
+                      android:paddingTop="0dp"
+					   android:paddingBottom="1dp"
+                android:layout_marginLeft="-1dp"
+                android:layout_marginRight="-1dp">
+                <Button
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_1"
+                    android:text=""
+                    android:textColor="@color/gray2" />
+                <Button
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_2"
+                    android:text=""
+                    android:textColor="@color/gray2" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_3"
+                    android:text="" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_4"
+                    android:text="" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_5"
+                    android:text="" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_6"
+                    android:text="" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_7"
+                    android:text="" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_8"
+                    android:text="" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_9"
+                    android:text="" />
+                <Button
+                    android:textColor="@color/gray2"
+                    style="@style/NXKBSyleN2"
+                    android:id="@+id/sessionbutton_0"
+                    android:text="" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_Q"
+                    android:text=""
+				 android:layout_weight="1.05"
+				/>
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_W"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_E"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_R"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_T"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_Y"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_U"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_I"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_O"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_P"
+                    android:text=""
+				 android:layout_weight="1.05"
+				/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_A"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_S"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_D"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_F"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_G"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_H"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_J"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_K"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_L"
+                    android:text="" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+  style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_SHIFT"
+                     android:text="^"
+					android:textSize="16dp"
+                        android:inputType="none|textNoSuggestions"
+                     	android:typeface="monospace"
+                            android:textColor="@color/black2"
+                            android:background="@drawable/selectorEnter" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_Z"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_X"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_C"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_V"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_B"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_N"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    android:id="@+id/sessionbutton_M"
+                    android:text="" />
+                <Button
+                    style="@style/NXKBSyle"
+                    
+                    android:id="@+id/sessionbutton_delete"
+                    android:text="del"
+					
+						android:textStyle="normal"
+						android:textSize="15dp"
+                      
+                             android:layout_marginBottom="3dp"
+                            android:background="@drawable/selectorEnter"
+				  android:textColor="@color/black2"
+				/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+						   android:layout_marginLeft="0dp"
+					 	android:layout_marginBottom="-3dp"
+              android:layout_marginTop="5dp">
+                <LinearLayout
+                     android:layout_weight="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+						
+                    android:paddingLeft="0dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                     
+                     
+                         android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                      android:layout_marginTop="0dp"
+                        android:paddingLeft="0dp">
+                        <Button
+                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="45dp"
+                            android:cursorVisible="false"
+                            android:inputType="none"
+                            android:paddingBottom="8dp"
+                            android:id="@+id/sessionbutton_CAPS"
+                            android:text="CAPS"
+								android:typeface="monospace"
+                            android:textColor="@color/men"
+                            android:backgroundTint="@color/bg"  />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+					 android:layout_marginLeft="4dp"
+							android:layout_marginRight="4dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingLeft="0dp">
+                    <Button
+                        style="@style/NXKBSyle"
+                        android:id="@+id/sessionbutton_SPACE"
+								android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+						  android:textStyle="bold"
+					 android:paddingBottom="8dp"
+                        android:text="SPACE"
+					 android:textSize="18sp"
+					/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingLeft="0dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="end"
+       
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                    
+			
+								>
+                        <Button
+                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="45dp"
+                            android:cursorVisible="false"
+                            android:inputType="none"
+                            android:paddingBottom="8dp"
+                            android:id="@+id/sessionbutton_enter"
+                            android:text="ENTER"
+								android:typeface="monospace"
+                            android:textColor="@color/men"
+
+                            android:backgroundTint="@color/bg" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+</LinearLayout>
+    </RelativeLayout>
+	</LinearLayout>
+	</LinearLayout>
+	</LinearLayout>
+	</LinearLayout>

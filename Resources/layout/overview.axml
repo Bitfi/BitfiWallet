@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:showDividers="none"
+    android:id="@+id/ovinf"
+	android:orientation="vertical"
+			 android:layout_marginTop="10dp"
+	>
+	  
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		  android:layout_marginLeft="10dp"
+		android:gravity="left"
+        android:orientation="horizontal">
+					 <ImageView
+                android:src="@drawable/ic_icons_devmessenger"
+                android:id="@+id/imageView1_ov"
+                android:textAlignment="viewStart"
+	
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+				  android:paddingLeft="15dp"
+			android:visibility="gone"
+                android:paddingRight="0dp" />
+        <TextView
+            android:id="@+id/ovt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="445655"
+				  android:typeface="normal"
+	
+          
+             android:textColor="#3e5359"
+            android:textSize="14dp"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/ovt1b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+              android:textColor="#3e5359"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            android:typeface="normal"
+            android:visibility="gone" />
+
+		
+   <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		>
+		
+	  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+			android:gravity="right"
+				  android:textAlignment="viewEnd"
+				  android:paddingRight="10dp"
+				 android:paddingLeft="20dp"
+        android:orientation="horizontal">
+					  
+
+	     <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ovt2"
+            android:typeface="normal"
+            android:textSize="16dp"
+									 android:letterSpacing="0.08"
+            android:textColor="@color/gray22"
+            android:text=""
+            android:textStyle="bold" />
+
+
+
+			</LinearLayout>
+		 </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+			 android:layout_marginTop="5dp"
+			 android:layout_marginBottom="5dp"
+			 android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		 android:textAlignment="viewEnd"
+		android:layout_alignParentRight="true"
+		android:gravity="right"
+        android:orientation="horizontal">
+   
+
+        	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textAlignment="viewEnd"
+            android:id="@+id/ovt3"
+					 android:letterSpacing="0.3"
+            android:typeface="monospace"
+            android:textSize="12dp"
+            android:padding="0dip"
+            android:textColor="@color/lg"
+            android:text=""
+            android:textStyle="bold" />
+
+		
+    </LinearLayout>
+
+
+</LinearLayout>
+	
