@@ -13,7 +13,7 @@ namespace WalletLibrary.Core.Concrete
 {
   public class WalletFactory : IDisposable
   {
-    public enum Products { BTC = 0, LTC, GRS, DGB, DOGE, DASH, ETH, NEO, EOS, APL, XRP, XMR, QTUM, FTC, VIA, BTG, MONA, ZCL, STRAT, BFA, BCH, XDC }
+    public enum Products { BTC = 0, LTC, GRS, DGB, DOGE, DASH, ETH, NEO, EOS, APL, XRP, XMR, QTUM, FTC, VIA, BTG, MONA, ZCL, STRAT, BFA, BCH, XDC, DAG }
     public static Int64 Counter = 0;
     
     private IKey MasterKey;
@@ -121,6 +121,10 @@ namespace WalletLibrary.Core.Concrete
           return new XrpWallet(GenerateKeys(productStr, indexes));
         case Products.EOS:
           return new EosWallet(GenerateKeys(productStr, indexes));
+
+        case Products.DAG:
+          return new DagWallet(GenerateKeys(productStr, indexes));
+
         default:
           throw new Exception(String.Format("Invalid currencySymbol: {0}", productStr));
       }

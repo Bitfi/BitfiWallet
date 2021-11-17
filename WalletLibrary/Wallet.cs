@@ -952,7 +952,8 @@ namespace WalletLibrary
 
     if (index == 0)
     {
-     if (Sclear.GetBLKNetworkAlt(req.BlkNet) == null && req.BlkNet != "apl" && req.BlkNet != "xrp" && req.BlkNet != "eos" && req.BlkNet != "xdc")
+     if (Sclear.GetBLKNetworkAlt(req.BlkNet) == null && req.BlkNet != "apl" && req.BlkNet != "xrp" && req.BlkNet != "eos" &&
+            req.BlkNet != "xdc" && req.BlkNet != "dag")
       throw new Exception(String.Format("Address feature is not supported"));
     }
     else

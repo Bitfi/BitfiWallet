@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="..\packages\Crosslight.Xamarin.Build.Download.25.3.1\build\Crosslight.Xamarin.Build.Download.props" Condition="Exists('..\packages\Crosslight.Xamarin.Build.Download.25.3.1\build\Crosslight.Xamarin.Build.Download.props')" />
-	<PropertyGroup>
+<Import Project="..\packages\Crosslight.Xamarin.Build.Download.25.3.1\build\Crosslight.Xamarin.Build.Download.props" Condition="Exists('..\packages\Crosslight.Xamarin.Build.Download.25.3.1\build\Crosslight.Xamarin.Build.Download.props')" />
+ 	<PropertyGroup>
 		<Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 		<ProductVersion>8.0.30703</ProductVersion>
@@ -42,7 +42,9 @@
 		<Deterministic>true</Deterministic>
 		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
 		<NoStdLib>false</NoStdLib>
-		<AndroidKeyStore>False</AndroidKeyStore>
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore></AndroidSigningKeyStore>
+		<AndroidSigningStorePass></AndroidSigningStorePass>
 		<AotAssemblies>true</AotAssemblies>
 		<EnableLLVM>true</EnableLLVM>
 		<AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
@@ -55,6 +57,9 @@
 		<AndroidTlsProvider>btls</AndroidTlsProvider>
 		<LangVersion>7.3</LangVersion>
 		<AndroidDexTool>dx</AndroidDexTool>
+		<AndroidSigningKeyAlias></AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass></AndroidSigningKeyPass>
+		<BundleAssemblies>true</BundleAssemblies>
 		<RunCodeAnalysis>false</RunCodeAnalysis>
 		<AndroidLinkTool>proguard</AndroidLinkTool>
 	</PropertyGroup>
@@ -2417,6 +2422,13 @@
 		<Compile Include="NoxDevice\AsyncRokitClient.cs" />
 		<Compile Include="NoxDevice\NoxNotification.cs" />
 		<Compile Include="ActivityUI\NoxDlgModel.cs" />
+		<Compile Include="WalletLibrary\Core\Concrete\Wallets\DagWallet.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\Account.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\base58.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\ECDSASecp256k1Signer.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\Hash.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\Transaction.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\Utils.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Web References\BITFIDEV\DEVTOOL.disco" />
@@ -2763,12 +2775,73 @@
 	  <Folder Include="NoxDevice\" />
 	  <Folder Include="NoxService\" />
 	  <Folder Include="Web References\" />
+	  <Folder Include="WalletLibrary\DagLibrary\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
 	    <UrlBehavior>Dynamic</UrlBehavior>
 	    <RelPath>Web References\BITFIDEV</RelPath>
 	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
 	  </WebReferenceUrl>
 	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
 	    <UrlBehavior>Dynamic</UrlBehavior>
@@ -2998,8 +3071,9 @@
 	            </NamingRule>
 	          </Rules>
 	        </NameConventionPolicy>
-	        <TextStylePolicy TabsToSpaces="False" RemoveTrailingWhitespace="True" EolMarker="Native" FileWidth="80" TabWidth="2" IndentWidth="2" NoTabsAfterNonTabs="True" scope="text/x-csharp" />
-	          </Policies>
+	        <TextStylePolicy RemoveTrailingWhitespace="True" FileWidth="80" TabWidth="2" TabsToSpaces="True" IndentWidth="2" NoTabsAfterNonTabs="True" EolMarker="Windows" scope="text/x-csharp" />
+	        <CSharpFormattingPolicy IndentBlock="True" IndentBraces="False" IndentSwitchSection="True" IndentSwitchCaseSection="True" LabelPositioning="OneLess" NewLinesForBracesInTypes="True" NewLinesForBracesInMethods="True" NewLinesForBracesInProperties="True" NewLinesForBracesInAccessors="True" NewLinesForBracesInAnonymousMethods="True" NewLinesForBracesInControlBlocks="True" NewLinesForBracesInAnonymousTypes="True" NewLinesForBracesInObjectCollectionArrayInitializers="True" NewLinesForBracesInLambdaExpressionBody="True" NewLineForElse="True" NewLineForCatch="True" NewLineForFinally="True" NewLineForMembersInObjectInit="True" NewLineForMembersInAnonymousTypes="True" NewLineForClausesInQuery="True" SpacingAfterMethodDeclarationName="False" SpaceWithinMethodDeclarationParenthesis="False" SpaceBetweenEmptyMethodDeclarationParentheses="False" SpaceAfterMethodCallName="False" SpaceWithinMethodCallParentheses="False" SpaceBetweenEmptyMethodCallParentheses="False" SpaceAfterControlFlowStatementKeyword="True" SpaceWithinExpressionParentheses="False" SpaceWithinCastParentheses="False" SpaceWithinOtherParentheses="False" SpaceAfterCast="False" SpacesIgnoreAroundVariableDeclaration="False" SpaceBeforeOpenSquareBracket="False" SpaceBetweenEmptySquareBrackets="False" SpaceWithinSquareBrackets="False" SpaceAfterColonInBaseTypeDeclaration="True" SpaceAfterComma="True" SpaceAfterDot="False" SpaceAfterSemicolonsInForStatement="True" SpaceBeforeColonInBaseTypeDeclaration="True" SpaceBeforeComma="False" SpaceBeforeDot="False" SpaceBeforeSemicolonsInForStatement="False" SpacingAroundBinaryOperator="Single" WrappingPreserveSingleLine="True" WrappingKeepStatementsOnSingleLine="True" scope="text/x-csharp" />
+	      </Policies>
 	    </Properties>
 	  </MonoDevelop>
 	</ProjectExtensions>
@@ -3011,5 +3085,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>7.3</LangVersion>
 <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+<RunCodeAnalysis>false</RunCodeAnalysis><AotAssemblies></AotAssemblies>
+<AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
 	</PropertyGroup>
 </Project>
