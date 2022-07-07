@@ -59,11 +59,8 @@ namespace WalletLibrary.NoxShared
     }
     public async Task StartWS(string authReq)
     {
-      //  WebSocketClientOptions webSocketClientOptions = new WebSocketClientOptions();
-      //  webSocketClientOptions.NoDelay = true;
-      //  webSocketClientOptions.IncludeExceptionInCloseResponse = false;
-      //  webSocketClientOptions.KeepAliveInterval = TimeSpan.FromMinutes(15);
-      webSocket = await factory.ConnectAsync(uri); ///, webSocketClientOptions);
+
+      webSocket = await factory.ConnectAsync(uri);
       
       Run();
       await Send(authReq);

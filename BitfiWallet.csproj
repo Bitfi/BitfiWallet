@@ -42,7 +42,6 @@
 		<Deterministic>true</Deterministic>
 		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
 		<NoStdLib>false</NoStdLib>
-		<AndroidKeyStore>True</AndroidKeyStore>
 		<AndroidSigningKeyStore></AndroidSigningKeyStore>
 		<AndroidSigningStorePass></AndroidSigningStorePass>
 		<AotAssemblies>true</AotAssemblies>
@@ -2425,10 +2424,32 @@
 		<Compile Include="WalletLibrary\Core\Concrete\Wallets\DagWallet.cs" />
 		<Compile Include="WalletLibrary\DagLibrary\Account.cs" />
 		<Compile Include="WalletLibrary\DagLibrary\base58.cs" />
-		<Compile Include="WalletLibrary\DagLibrary\ECDSASecp256k1Signer.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\DagSigner.cs" />
 		<Compile Include="WalletLibrary\DagLibrary\Hash.cs" />
 		<Compile Include="WalletLibrary\DagLibrary\Transaction.cs" />
 		<Compile Include="WalletLibrary\DagLibrary\Utils.cs" />
+		<Compile Include="ActivityUI\MetaActivity.cs" />
+		<Compile Include="NoxDevice\NoxChannel.cs" />
+		<Compile Include="ActivityUI\ChannelActivity.cs" />
+		<Compile Include="WalletLibrary\Core\Concrete\WalletActiveFactory.cs" />
+		<Compile Include="WalletLibrary\Core\Abstract\IActiveWallet.cs" />
+		<Compile Include="WalletLibrary\Core\Concrete\ActiveWallets\BtcWallet.cs" />
+		<Compile Include="WalletLibrary\Core\Concrete\ActiveWallets\DagWallet.cs" />
+		<Compile Include="WalletLibrary\Core\Concrete\ActiveWallets\EthWallet.cs" />
+		<Compile Include="WalletLibrary\Core\Concrete\ActiveWallets\XDCWallet.cs" />
+		<Compile Include="WalletLibrary\Core\Concrete\ActiveWallets\CommonWallet.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ApeShift\ApeAPI.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ApeShift\ApeMQ.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ApeShift\ApeSession.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ApeShift\ApeShiftMoels.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ApeShift\AsyncDelegate.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ApeShift\BroadcastModels.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ActiveProcessor.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\MetaModels.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\MetaSession.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\ECKEY.cs" />
+		<Compile Include="WalletLibrary\ActiveApe\Extensions.cs" />
+		<Compile Include="WalletLibrary\Core\WalletSessions.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Web References\BITFIDEV\DEVTOOL.disco" />
@@ -2501,6 +2522,90 @@
 		</AndroidResource>
 		<AndroidResource Include="Resources\layout\status_model_list.axml" />
 		<AndroidResource Include="Resources\layout\brightness.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\layout\metamask.axml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\layout\channel_model.axml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\layout\sessionLP.axml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\transparent_bg_bordered.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\transparent_bg_bordered_button.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\Link.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\LinkLarge.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\compare_arrows48px.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\AW7.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\AW6.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\AW4.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\AW5.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\AW3.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\AW2.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\transparent_bg.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\transparent_bg_button.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\btclogo.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\btc_border.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\connect.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\connect_link.xml">
+		  <SubType></SubType>
+		  <Generator></Generator>
+		</AndroidResource>
+		<AndroidResource Include="Resources\drawable-hdpi\btcgrad.xml">
 		  <SubType></SubType>
 		  <Generator></Generator>
 		</AndroidResource>
@@ -2776,12 +2881,270 @@
 	  <Folder Include="NoxService\" />
 	  <Folder Include="Web References\" />
 	  <Folder Include="WalletLibrary\DagLibrary\" />
+	  <Folder Include="WalletLibrary\Core\Concrete\ActiveWallets\" />
+	  <Folder Include="WalletLibrary\ActiveApe\" />
+	  <Folder Include="WalletLibrary\ActiveApe\ApeShift\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
 	    <UrlBehavior>Dynamic</UrlBehavior>
 	    <RelPath>Web References\BITFIDEV</RelPath>
 	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
 	  </WebReferenceUrl>
 	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
 	    <UrlBehavior>Dynamic</UrlBehavior>
@@ -3071,7 +3434,7 @@
 	            </NamingRule>
 	          </Rules>
 	        </NameConventionPolicy>
-	        <TextStylePolicy RemoveTrailingWhitespace="True" FileWidth="80" TabWidth="2" TabsToSpaces="True" IndentWidth="2" NoTabsAfterNonTabs="True" EolMarker="Windows" scope="text/x-csharp" />
+	        <TextStylePolicy TabsToSpaces="False" RemoveTrailingWhitespace="True" FileWidth="80" TabWidth="1" IndentWidth="1" NoTabsAfterNonTabs="True" EolMarker="Windows" scope="text/x-csharp" />
 	        <CSharpFormattingPolicy IndentBlock="True" IndentBraces="False" IndentSwitchSection="True" IndentSwitchCaseSection="True" LabelPositioning="OneLess" NewLinesForBracesInTypes="True" NewLinesForBracesInMethods="True" NewLinesForBracesInProperties="True" NewLinesForBracesInAccessors="True" NewLinesForBracesInAnonymousMethods="True" NewLinesForBracesInControlBlocks="True" NewLinesForBracesInAnonymousTypes="True" NewLinesForBracesInObjectCollectionArrayInitializers="True" NewLinesForBracesInLambdaExpressionBody="True" NewLineForElse="True" NewLineForCatch="True" NewLineForFinally="True" NewLineForMembersInObjectInit="True" NewLineForMembersInAnonymousTypes="True" NewLineForClausesInQuery="True" SpacingAfterMethodDeclarationName="False" SpaceWithinMethodDeclarationParenthesis="False" SpaceBetweenEmptyMethodDeclarationParentheses="False" SpaceAfterMethodCallName="False" SpaceWithinMethodCallParentheses="False" SpaceBetweenEmptyMethodCallParentheses="False" SpaceAfterControlFlowStatementKeyword="True" SpaceWithinExpressionParentheses="False" SpaceWithinCastParentheses="False" SpaceWithinOtherParentheses="False" SpaceAfterCast="False" SpacesIgnoreAroundVariableDeclaration="False" SpaceBeforeOpenSquareBracket="False" SpaceBetweenEmptySquareBrackets="False" SpaceWithinSquareBrackets="False" SpaceAfterColonInBaseTypeDeclaration="True" SpaceAfterComma="True" SpaceAfterDot="False" SpaceAfterSemicolonsInForStatement="True" SpaceBeforeColonInBaseTypeDeclaration="True" SpaceBeforeComma="False" SpaceBeforeDot="False" SpaceBeforeSemicolonsInForStatement="False" SpacingAroundBinaryOperator="Single" WrappingPreserveSingleLine="True" WrappingKeepStatementsOnSingleLine="True" scope="text/x-csharp" />
 	      </Policies>
 	    </Properties>
@@ -3087,5 +3450,13 @@
 <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
 <RunCodeAnalysis>false</RunCodeAnalysis><AotAssemblies></AotAssemblies>
 <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+<AndroidPackageFormat>apk</AndroidPackageFormat>
+<AndroidUseAapt2>true</AndroidUseAapt2>
+<AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+<AndroidDexTool>d8</AndroidDexTool>
+<AndroidPackageFormat>apk</AndroidPackageFormat>
+<AndroidUseAapt2>true</AndroidUseAapt2>
+<AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+<AndroidDexTool>d8</AndroidDexTool>
 	</PropertyGroup>
 </Project>

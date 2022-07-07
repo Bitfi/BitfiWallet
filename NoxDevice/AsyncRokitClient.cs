@@ -55,7 +55,7 @@ namespace BitfiWallet
    });
 
    _WorkThread = new Thread(new ThreadStart(work));
-   _WorkThread.SetApartmentState(ApartmentState.STA);
+   _WorkThread.SetApartmentState(ApartmentState.MTA);
 
   }
 

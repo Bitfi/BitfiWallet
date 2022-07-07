@@ -13,117 +13,117 @@ using WalletLibrary.Core.Abstract;
 
 namespace WalletLibrary.Core.Concrete.Wallets
 {
-  public class EthWallet : CommonWallet, IWallet
-  {
-    public string Symbol { get; private set; } = "eth";
-    //to do: rewrite, i had to implement it because of previous design
-    private NoxKeyGen NoxKeyGen;
+	public class EthWallet : CommonWallet, IWallet
+	{
+		public string Symbol { get; private set; } = "eth";
+		//to do: rewrite, i had to implement it because of previous design
+		private NoxKeyGen NoxKeyGen;
 
-    public EthWallet(KeySet[] keySets, WalletFactory.Products product = WalletFactory.Products.ETH) 
-      : base(keySets, product)
-    {
-      NoxKeyGen = new NoxKeyGen(keySets);
-    }
+		public EthWallet(KeySet[] keySets, WalletFactory.Products product = WalletFactory.Products.ETH)
+				: base(keySets, product)
+		{
+			NoxKeyGen = new NoxKeyGen(keySets);
+		}
 
-    public string GetLegacyAddress(uint index = 0)
-    {
-      if (!HasIndex(index))
-        throw new Exception(String.Format("Unable to find such index: {0} in the wallet", index));
+		public string GetLegacyAddress(uint index = 0)
+		{
+			if (!HasIndex(index))
+				throw new Exception(String.Format("Unable to find such index: {0} in the wallet", index));
 
-      var keySet = KeySets.FirstOrDefault(k => k.Index == index);
-      using (var pubKeyUncompressed = keySet.Key.GetPublicKey(false))
-      {
-        //todo: rewrite using native methods
-        var pubKey = new PubKey(pubKeyUncompressed.Value, (int)index, Symbol);
+			var keySet = KeySets.FirstOrDefault(k => k.Index == index);
+			using (var pubKeyUncompressed = keySet.Key.GetPublicKey(false))
+			{
+				//todo: rewrite using native methods
+				var pubKey = new PubKey(pubKeyUncompressed.Value, (int)index, Symbol);
 
-        EthECKey ekey = new EthECKey(pubKey, NoxKeyGen);
-        return ekey.GetPublicAddress();
-      }
-    }
+				EthECKey ekey = new EthECKey(pubKey, NoxKeyGen);
+				return ekey.GetPublicAddress();
+			}
+		}
 
-    public PaymentRequestResponse SignPaymentRequest(NoxTxnProcess req)
-    {
-      PaymentRequestResponse response = new PaymentRequestResponse();
-      
-      string ethadr = GetLegacyAddress();
-      if (ethadr.ToLower() != req.NoxAddress.BTCAddress.ToLower())
-        throw new Exception(Sclear.MSG_ERROR_TRANSACTION);
+		public PaymentRequestResponse SignPaymentRequest(NoxTxnProcess req)
+		{
+			PaymentRequestResponse response = new PaymentRequestResponse();
 
-      using (var publicKey = KeySets[0].Key.GetPublicKey(false))
-      {
-        PubKey pubKey = new PubKey(publicKey.Value, 0, Symbol);
-        EthECKey key = new EthECKey(pubKey, NoxKeyGen);
+			string ethadr = GetLegacyAddress();
+			if (ethadr.ToLower() != req.NoxAddress.BTCAddress.ToLower())
+				throw new Exception(Sclear.MSG_ERROR_TRANSACTION);
 
-        if (!string.IsNullOrEmpty(req.ETCToken))
-        {
-          var contractAddress = req.ETCToken.EnsureHexPrefix();
-          var to = req.ToAddress.EnsureHexPrefix();
-          var amount = NumUtils.Utils.ToSatoshi(req.Amount, 18);
-          var nonce = System.Numerics.BigInteger.Parse(req.ETCNonce);
-          var gasPrice = NumUtils.Utils.ToSatoshi(req.FeeValue, 18);
-          var gasLimit = new System.Numerics.BigInteger(Int64.Parse(req.ETCGasUsed));
-          var tx = new EthereumLibrary.Signer.Transaction(contractAddress, to, amount, nonce, gasPrice, gasLimit);
-          tx.Sign(key);
-          var signedHex = tx.ToHex();
+			using (var publicKey = KeySets[0].Key.GetPublicKey(false))
+			{
+				PubKey pubKey = new PubKey(publicKey.Value, 0, Symbol);
+				EthECKey key = new EthECKey(pubKey, NoxKeyGen);
 
-          response.TxnHex = signedHex;
-          var ethFeeLimitSat = tx.GasLimit.ToBigIntegerFromRLPDecoded() * tx.GasPrice.ToBigIntegerFromRLPDecoded();
-          var ethFeeLimitBtc = NumUtils.Utils.FromSatoshi(ethFeeLimitSat, 18);
-          response.Addition = new Addition
-          {
-            MaxFeeAllowed = ethFeeLimitBtc,
-            ContractAddress = contractAddress
-          };
-        }
-        else
-        {
-          var to = req.ToAddress.EnsureHexPrefix();
-          var amount = NumUtils.Utils.ToSatoshi(req.Amount, 18);
-          var nonce = System.Numerics.BigInteger.Parse(req.ETCNonce);
-          var gasPrice = NumUtils.Utils.ToSatoshi(req.FeeValue, 18);
-          var gasLimit = new System.Numerics.BigInteger(Int64.Parse(req.ETCGasUsed));
+				if (!string.IsNullOrEmpty(req.ETCToken))
+				{
+					var contractAddress = req.ETCToken.EnsureHexPrefix();
+					var to = req.ToAddress.EnsureHexPrefix();
+					var amount = NumUtils.Utils.ToSatoshi(req.Amount, 18);
+					var nonce = System.Numerics.BigInteger.Parse(req.ETCNonce);
+					var gasPrice = NumUtils.Utils.ToSatoshi(req.FeeValue, 18);
+					var gasLimit = new System.Numerics.BigInteger(Int64.Parse(req.ETCGasUsed));
+					var tx = new EthereumLibrary.Signer.Transaction(contractAddress, to, amount, nonce, gasPrice, gasLimit);
+					tx.Sign(key);
+					var signedHex = tx.ToHex();
 
-          var tx = new EthereumLibrary.Signer.Transaction(to, amount, nonce, gasPrice, gasLimit);
-          tx.Sign(key);
-          var signedHex = tx.ToHex();
+					response.TxnHex = signedHex;
+					var ethFeeLimitSat = tx.GasLimit.ToBigIntegerFromRLPDecoded() * tx.GasPrice.ToBigIntegerFromRLPDecoded();
+					var ethFeeLimitBtc = NumUtils.Utils.FromSatoshi(ethFeeLimitSat, 18);
+					response.Addition = new Addition
+					{
+						MaxFeeAllowed = ethFeeLimitBtc,
+						ContractAddress = contractAddress
+					};
+				}
+				else
+				{
+					var to = req.ToAddress.EnsureHexPrefix();
+					var amount = NumUtils.Utils.ToSatoshi(req.Amount, 18);
+					var nonce = System.Numerics.BigInteger.Parse(req.ETCNonce);
+					var gasPrice = NumUtils.Utils.ToSatoshi(req.FeeValue, 18);
+					var gasLimit = new System.Numerics.BigInteger(Int64.Parse(req.ETCGasUsed));
 
-          response.TxnHex = signedHex;
+					var tx = new EthereumLibrary.Signer.Transaction(to, amount, nonce, gasPrice, gasLimit);
+					tx.Sign(key);
+					var signedHex = tx.ToHex();
 
-          var ethFeeLimitSat = tx.GasLimit.ToBigIntegerFromRLPDecoded() * tx.GasPrice.ToBigIntegerFromRLPDecoded();
-          var ethFeeLimitBtc = NumUtils.Utils.FromSatoshi(ethFeeLimitSat, 18);
-          response.Addition = new Addition
-          {
-            MaxFeeAllowed = ethFeeLimitBtc
-          };
-        }
+					response.TxnHex = signedHex;
 
-        return response;
-      }
-    }
+					var ethFeeLimitSat = tx.GasLimit.ToBigIntegerFromRLPDecoded() * tx.GasPrice.ToBigIntegerFromRLPDecoded();
+					var ethFeeLimitBtc = NumUtils.Utils.FromSatoshi(ethFeeLimitSat, 18);
+					response.Addition = new Addition
+					{
+						MaxFeeAllowed = ethFeeLimitBtc
+					};
+				}
 
-    public string GetSegwitAddress(uint index = 0)
-    {
-      throw new NotImplementedException();
-    }
+				return response;
+			}
+		}
 
-    public MsgTaskTransferResponse SignMessage(NoxMsgProcess req)
-    {
-      string ethadr = GetLegacyAddress();
-      if (ethadr.ToLower() != req.NoxAddress.BTCAddress.ToLower())
-        throw new Exception(Sclear.MSG_ERROR_SIGNMESSAGE);
+		public string GetSegwitAddress(uint index = 0)
+		{
+			throw new NotImplementedException();
+		}
 
-      MsgTaskTransferResponse response = new MsgTaskTransferResponse();
-      byte[] Msg = Convert.FromBase64String(req.Msg);
+		public MsgTaskTransferResponse SignMessage(NoxMsgProcess req)
+		{
+			string ethadr = GetLegacyAddress();
+			if (ethadr.ToLower() != req.NoxAddress.BTCAddress.ToLower())
+				throw new Exception(Sclear.MSG_ERROR_SIGNMESSAGE);
 
-      using (var publicKeyUncompressed = KeySets[0].Key.GetPublicKey(false))
-      {
-        PubKey pubKeyUncompressed = new PubKey(publicKeyUncompressed.Value, req.NoxAddress.HDIndex, req.BlkNet);
-        EthECKey ekey = new EthECKey(pubKeyUncompressed, NoxKeyGen);
-        EthereumLibrary.MsgSigning elib = new EthereumLibrary.MsgSigning();
-        response.MsgSig = elib.ETHMsgSign(Msg, ekey);
-      }
+			MsgTaskTransferResponse response = new MsgTaskTransferResponse();
+			byte[] Msg = Convert.FromBase64String(req.Msg);
 
-      return response;
-    }
-  }
+			using (var publicKeyUncompressed = KeySets[0].Key.GetPublicKey(false))
+			{
+				PubKey pubKeyUncompressed = new PubKey(publicKeyUncompressed.Value, req.NoxAddress.HDIndex, req.BlkNet);
+				EthECKey ekey = new EthECKey(pubKeyUncompressed, NoxKeyGen);
+				EthereumLibrary.MsgSigning elib = new EthereumLibrary.MsgSigning();
+				response.MsgSig = elib.ETHMsgSign(Msg, ekey);
+			}
+
+			return response;
+		}
+	}
 }

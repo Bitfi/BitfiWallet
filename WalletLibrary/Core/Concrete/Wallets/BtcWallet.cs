@@ -10,130 +10,130 @@ using WalletLibrary.Core.Abstract;
 
 namespace WalletLibrary.Core.Concrete.Wallets
 {
-  public class BtcWallet : CommonWallet, IWallet
-  {
-    private Network Network;
-    //to do: rewrite, i had to implement it because of previous design
-    private NoxKeyGen NoxKeyGen;
+	public class BtcWallet : CommonWallet, IWallet
+	{
+		private Network Network;
+		//to do: rewrite, i had to implement it because of previous design
+		private NoxKeyGen NoxKeyGen;
 
-    public BtcWallet(KeySet[] keySets, WalletFactory.Products product = WalletFactory.Products.BTC) 
-      : base(keySets, product)
-    {
-      Network = Sclear.GetBLKNetworkAlt(Symbol);
-      NoxKeyGen = new NoxKeyGen(keySets);
-    }
+		public BtcWallet(KeySet[] keySets, WalletFactory.Products product = WalletFactory.Products.BTC)
+				: base(keySets, product)
+		{
+			Network = Sclear.GetBLKNetworkAlt(Symbol);
+			NoxKeyGen = new NoxKeyGen(keySets);
+		}
 
-    public string GetLegacyAddress(uint index = 0)
-    {
-      return GetAddress(index, false);
-    }
+		public string GetLegacyAddress(uint index = 0)
+		{
+			return GetAddress(index, false);
+		}
 
-    public string GetSegwitAddress(uint index = 0)
-    {
-      return GetAddress(index, true);
-    }
+		public string GetSegwitAddress(uint index = 0)
+		{
+			return GetAddress(index, true);
+		}
 
-    public MsgTaskTransferResponse SignMessage(NoxMsgProcess req)
-    {
-      if (!HasIndex((uint)req.NoxAddress.HDIndex))
-        throw new Exception(String.Format("Unable to find such index: {0} in the wallet", req.NoxAddress.HDIndex));
+		public MsgTaskTransferResponse SignMessage(NoxMsgProcess req)
+		{
+			if (!HasIndex((uint)req.NoxAddress.HDIndex))
+				throw new Exception(String.Format("Unable to find such index: {0} in the wallet", req.NoxAddress.HDIndex));
 
-      var addr = GetAddress((uint)req.NoxAddress.HDIndex, req.NoxAddress.DoSegwit);
-      if (addr != req.NoxAddress.BTCAddress)
-        throw new Exception(String.Format(Sclear.MSG_ERROR_SIGNMESSAGE, addr, req.NoxAddress.BTCAddress));
+			var addr = GetAddress((uint)req.NoxAddress.HDIndex, req.NoxAddress.DoSegwit);
+			if (addr != req.NoxAddress.BTCAddress)
+				throw new Exception(String.Format(Sclear.MSG_ERROR_SIGNMESSAGE, addr, req.NoxAddress.BTCAddress));
 
-      MsgTaskTransferResponse response = new MsgTaskTransferResponse();
-      byte[] msg = Convert.FromBase64String(req.Msg);
+			MsgTaskTransferResponse response = new MsgTaskTransferResponse();
+			byte[] msg = Convert.FromBase64String(req.Msg);
 
-      var keySet = KeySets.FirstOrDefault(k => k.Index == req.NoxAddress.HDIndex);
-      
-      var isCompressed = req.NoxAddress.DoSegwit;
-      using (var publicKey = keySet.Key.GetPublicKey(isCompressed))
-      {
-        PubKey pubKey = new PubKey(publicKey.Value, req.NoxAddress.HDIndex, req.BlkNet);
-        AltCoinGen altCoinGen = new AltCoinGen(Network, NoxKeyGen);
-        response.MsgSig = altCoinGen.AltMsgSign(pubKey, req.NoxAddress.BTCAddress, System.Text.Encoding.UTF8.GetString(msg));
-      }
-      
-      return response;
-    }
+			var keySet = KeySets.FirstOrDefault(k => k.Index == req.NoxAddress.HDIndex);
 
-    public PaymentRequestResponse SignPaymentRequest(NoxTxnProcess req)
-    {
-      PaymentRequestResponse response = new PaymentRequestResponse();
-      var addition = new Addition { };
+			var isCompressed = req.NoxAddress.DoSegwit;
+			using (var publicKey = keySet.Key.GetPublicKey(isCompressed))
+			{
+				PubKey pubKey = new PubKey(publicKey.Value, req.NoxAddress.HDIndex, req.BlkNet);
+				AltCoinGen altCoinGen = new AltCoinGen(Network, NoxKeyGen);
+				response.MsgSig = altCoinGen.AltMsgSign(pubKey, req.NoxAddress.BTCAddress, System.Text.Encoding.UTF8.GetString(msg));
+			}
 
-      var HDIndexes = req.HDIndexList;
-      List<PubKey> KBList = new List<PubKey>();
+			return response;
+		}
 
-      for (int i = 0; i < HDIndexes.Length; i++)
-      {
-        int hdIndex = Convert.ToInt32(HDIndexes[i]);
-        var keySet = KeySets.FirstOrDefault(k => k.Index == hdIndex);
+		public PaymentRequestResponse SignPaymentRequest(NoxTxnProcess req)
+		{
+			PaymentRequestResponse response = new PaymentRequestResponse();
+			var addition = new Addition { };
 
-        var pubKeyCompressed = new PubKey(keySet.Key.GetPublicKey(true).Value, hdIndex, req.BlkNet);
-        var pubKeyUncompressed = new PubKey(keySet.Key.GetPublicKey(false).Value, hdIndex, req.BlkNet);
+			var HDIndexes = req.HDIndexList;
+			List<PubKey> KBList = new List<PubKey>();
 
-        KBList.Add(pubKeyCompressed);
-        KBList.Add(pubKeyUncompressed);
-      }
+			for (int i = 0; i < HDIndexes.Length; i++)
+			{
+				int hdIndex = Convert.ToInt32(HDIndexes[i]);
+				var keySet = KeySets.FirstOrDefault(k => k.Index == hdIndex);
 
-      AltCoinGen altCoinGen = new AltCoinGen(Network, NoxKeyGen);
+				var pubKeyCompressed = new PubKey(keySet.Key.GetPublicKey(true).Value, hdIndex, req.BlkNet);
+				var pubKeyUncompressed = new PubKey(keySet.Key.GetPublicKey(false).Value, hdIndex, req.BlkNet);
 
-      List<NoxKeys.BCUnspent> txnRaw = new List<NoxKeys.BCUnspent>();
-      foreach (var txnin in req.UnspentList)
-      {
-        NoxKeys.BCUnspent bCUnspent = new NoxKeys.BCUnspent();
-        bCUnspent.Address = txnin.Address;
-        bCUnspent.OutputN = txnin.OutputN;
-        bCUnspent.TxHash = txnin.TxHash;
-        bCUnspent.Amount = txnin.Amount;
-        txnRaw.Add(bCUnspent);
-      }
+				KBList.Add(pubKeyCompressed);
+				KBList.Add(pubKeyUncompressed);
+			}
 
-      var txn = altCoinGen.AltCoinSign(KBList, req.ToAddress, txnRaw, req.Amount, req.NoxAddress.BTCAddress, req.FeeTotal);
+			AltCoinGen altCoinGen = new AltCoinGen(Network, NoxKeyGen);
 
-      if (txn.IsError) throw new Exception(txn.ErrorMessage);
+			List<NoxKeys.BCUnspent> txnRaw = new List<NoxKeys.BCUnspent>();
+			foreach (var txnin in req.UnspentList)
+			{
+				NoxKeys.BCUnspent bCUnspent = new NoxKeys.BCUnspent();
+				bCUnspent.Address = txnin.Address;
+				bCUnspent.OutputN = txnin.OutputN;
+				bCUnspent.TxHash = txnin.TxHash;
+				bCUnspent.Amount = txnin.Amount;
+				txnRaw.Add(bCUnspent);
+			}
 
-      response.TxnHex = txn.TxnHex;
-      addition.FeeAmount = txn.Fee.ToString(); 
+			var txn = altCoinGen.AltCoinSign(KBList, req.ToAddress, txnRaw, req.Amount, req.NoxAddress.BTCAddress, req.FeeTotal);
 
-      response.Addition = addition;
-      return response;
+			if (txn.IsError) throw new Exception(txn.ErrorMessage);
 
-    }
+			response.TxnHex = txn.TxnHex;
+			addition.FeeAmount = txn.Fee.ToString();
 
-    private string GetAddress(uint index, bool isSegwit)
-    {
-      if (!HasIndex(index))
-        throw new Exception(String.Format("Unable to find such index: {0} in the wallet", index));
+			response.Addition = addition;
+			return response;
 
-      var keySet = KeySets.FirstOrDefault(k => k.Index == index);
-      using (var pubKeyUncompressed = keySet.Key.GetPublicKey(isSegwit))
-      {
-        //todo: rewrite using native methods
-        var pubKey = new PubKey(pubKeyUncompressed.Value, (int)index, Symbol);
-        AltCoinGen altCoinGen = new AltCoinGen(Network, NoxKeyGen);
-        return altCoinGen.GetNewAddress(pubKey);
-      }
-    }
+		}
 
-    private List<PubKey> HDDerriveMultipleKey(int[] hdIndexes, string currencySymbol)
-    {
-      List<PubKey> KBList = new List<PubKey>();
-      
-      foreach (int hdIndex in hdIndexes.Distinct())
-      {
-        var keySet = KeySets.FirstOrDefault(k => k.Index == hdIndex);
-        
-        var pubKeyCompressed = new PubKey(keySet.Key.GetPublicKey(true).Value, hdIndex, Symbol);
-        var pubKeyUncompressed = new PubKey(keySet.Key.GetPublicKey(false).Value, hdIndex, Symbol);
+		private string GetAddress(uint index, bool isSegwit)
+		{
+			if (!HasIndex(index))
+				throw new Exception(String.Format("Unable to find such index: {0} in the wallet", index));
 
-        KBList.Add(pubKeyCompressed);
-        KBList.Add(pubKeyUncompressed);
-      }
+			var keySet = KeySets.FirstOrDefault(k => k.Index == index);
+			using (var pubKeyUncompressed = keySet.Key.GetPublicKey(isSegwit))
+			{
+				//todo: rewrite using native methods
+				var pubKey = new PubKey(pubKeyUncompressed.Value, (int)index, Symbol);
+				AltCoinGen altCoinGen = new AltCoinGen(Network, NoxKeyGen);
+				return altCoinGen.GetNewAddress(pubKey);
+			}
+		}
 
-      return KBList;
-    }
-  }
+		private List<PubKey> HDDerriveMultipleKey(int[] hdIndexes, string currencySymbol)
+		{
+			List<PubKey> KBList = new List<PubKey>();
+
+			foreach (int hdIndex in hdIndexes.Distinct())
+			{
+				var keySet = KeySets.FirstOrDefault(k => k.Index == hdIndex);
+
+				var pubKeyCompressed = new PubKey(keySet.Key.GetPublicKey(true).Value, hdIndex, Symbol);
+				var pubKeyUncompressed = new PubKey(keySet.Key.GetPublicKey(false).Value, hdIndex, Symbol);
+
+				KBList.Add(pubKeyCompressed);
+				KBList.Add(pubKeyUncompressed);
+			}
+
+			return KBList;
+		}
+	}
 }

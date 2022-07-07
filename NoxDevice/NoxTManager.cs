@@ -8,6 +8,7 @@ namespace BitfiWallet.DeviceManager
  {
   private readonly Device _Device;
 
+
   public BatStatus batStatus = new BatStatus() { IsCharging = false, IsError = true, Level = 0 };
 
   public UpdateStatus updateStatus = new UpdateStatus() { Available = false, Progress = UpdateProgress.UNKNOWN };

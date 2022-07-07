@@ -40,14 +40,10 @@ namespace WalletLibrary.Core.Concrete
       Init(child, depth);
     }
     
-    public NativeSecp256k1Bip32Node(NoxManagedArray seed, NoxManagedArray key = null)
+    public NativeSecp256k1Bip32Node(NoxManagedArray seed, NoxManagedArray key)
     {
       try
       {
-        if (key == null)
-        {
-          key = new NoxManagedArray(System.Text.Encoding.UTF8.GetBytes("Bitcoin seed"));
-        }
         
         NodePtr = CoreNativeBridge.BtcHDNodeNew();
         Init(0, 0);

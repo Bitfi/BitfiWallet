@@ -35,7 +35,6 @@ namespace BitfiWallet
   public bool IsCharging { get; set; }
   public Int32 Level { get; set; }
   public bool IsError { get; set; }
-
  }
 
  public class SystemPref
@@ -114,5 +113,29 @@ namespace BitfiWallet
   public static Typeface typeface;
   public static Typeface typefaceI;
   public static Typeface typefaceB;
+ }
+
+ public class BlindRequest
+ {
+  public string RequestMessage { get; set; }
+  public string PublicKey { get; set; }
+  public string Signature { get; set; }
+ }
+
+ public class SafeDeviceInfo
+ {
+
+  public string DevicePubKey { get; set; }
+  public string SignerPubKey { get; set; }
+  public string RunningVersion { get; set; }
+  public string AvailableMem { get; set; }
+  public string DeviceTime { get; set; }
+  public string UptimeElapsed { get; set; }
+  public string UptimeAwake { get; set; }
+  public bool IsRestartPending { get; set; }
+  public bool IsVibeEnabled { get; set; }
+  public bool IsAutoUpdate { get; set; }
+  public List<string> ProcessList { get; set; }
+
  }
 }

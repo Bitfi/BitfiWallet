@@ -336,6 +336,14 @@ namespace BitfiWallet
     FinishA();
     break;
 
+
+    case "wallet_start":
+     var wnxact = new Intent(_activity, typeof(MetaActivity));
+     wnxact.AddFlags(ActivityFlags.NoAnimation);
+     _activity.StartActivity(wnxact);
+     FinishA();
+     break;
+
    }
   }
   private async void EnterEvent()
@@ -464,7 +472,8 @@ namespace BitfiWallet
   public void DisplayMSG(string msg, string title, string pbtn, bool Close = false)
   {
 
-   AlertDialog.Builder builder = new AlertDialog.Builder(_activity, Resource.Style.MyAlertDialogThemeD).SetTitle(title).SetMessage(msg).SetCancelable(false).SetPositiveButton(pbtn, (EventHandler<DialogClickEventArgs>)null);
+   AlertDialog.Builder builder = new AlertDialog.Builder(_activity, Resource.Style.MyAlertDialogThemeD)
+    .SetTitle(title).SetMessage(msg).SetCancelable(false).SetPositiveButton(pbtn, (EventHandler<DialogClickEventArgs>)null);
 
    if (!Close)
    {

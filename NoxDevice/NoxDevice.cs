@@ -16,433 +16,513 @@ using Newtonsoft.Json;
 namespace BitfiWallet.DeviceManager
 {
 
- public class NoxDevice : INoxDevice
- {
-
-  public event EventHandler OnBatteryChanged;
-
-  private readonly Context context;
-  private readonly Vibrator v;
-  private readonly PowerManager.WakeLock wakeLock;
+	public class NoxDevice : INoxDevice
+	{
+
+		public event EventHandler OnBatteryChanged;
+
+		private readonly Context context;
+		private readonly Vibrator v;
+		private readonly PowerManager.WakeLock wakeLock;
 
-  private List<WeakReference<Activity>> acts = new List<WeakReference<Activity>>();
+		private List<WeakReference<Activity>> acts = new List<WeakReference<Activity>>();
 
-  public static NoxDevice Current { get; private set; }
+		public static NoxDevice Current { get; private set; }
 
-  public readonly ComponentName deviceAdmin;
-  public readonly DevicePolicyManager dpm;
+		public readonly ComponentName deviceAdmin;
+		public readonly DevicePolicyManager dpm;
 
-  private NoxTManager _NoxT = null;
+		private NoxTManager _NoxT = null;
 
-  public int ThisVersion { get; set; }
-  public bool IsDirectBoot { get; set; }
-  public bool COUSU_Created { get; set; }
-  public bool DirectAPKInstalled { get; set; }
+		public int ThisVersion { get; set; }
+		public bool IsDirectBoot { get; set; }
+		public bool COUSU_Created { get; set; }
+		public bool DirectAPKInstalled { get; set; }
 
-  private bool _RestartPending;
+		private bool _RestartPending;
 
-  private bool _PrefUpdate;
-  private bool _PrefVibe;
+		private bool _PrefUpdate;
+		private bool _PrefVibe;
 
-  public bool IsRestartPending()
-  {
-   return _RestartPending;
-  }
+		public bool IsRestartPending()
+		{
+			return _RestartPending;
+		}
 
-  public void SetTEE(string DeviceKey, string DeviceID)
-  {
-   if (_NoxT != null)
-    return;
+		public void SetTEE(string DeviceKey, string DeviceID)
+		{
+			if (_NoxT != null)
+				return;
 
-   _NoxT = new NoxTManager(DeviceKey, DeviceID);
-  }
+			_NoxT = new NoxTManager(DeviceKey, DeviceID);
+		}
 
-  public NoxTManager NoxT
-  {
-   get
-   {
-    return _NoxT;
-   }
-  }
+		public NoxTManager NoxT
+		{
+			get
+			{
+				return _NoxT;
+			}
+		}
 
-  public NoxDevice(Context appContext)
-  {
-   if (Current != null)
-    return;
+		public NoxDevice(Context appContext)
+		{
+			if (Current != null)
+				return;
 
-   Current = this;
+			Current = this;
 
-   context = appContext;
+			context = appContext;
 
-   deviceAdmin = new ComponentName(context.PackageName, "com.rokits.noxadmin.AdminReceiver");
-   dpm = (DevicePolicyManager)context.GetSystemService("device_policy");
-   wakeLock = ((PowerManager)context.GetSystemService("power")).NewWakeLock(WakeLockFlags.Partial, "com.rokits.noxadmin");
-   v = (Vibrator)context.GetSystemService("vibrator");
+			deviceAdmin = new ComponentName(context.PackageName, "com.rokits.noxadmin.AdminReceiver");
+			dpm = (DevicePolicyManager)context.GetSystemService("device_policy");
+			wakeLock = ((PowerManager)context.GetSystemService("power")).NewWakeLock(WakeLockFlags.Partial, "com.rokits.noxadmin");
+			v = (Vibrator)context.GetSystemService("vibrator");
 
-  }
+		}
 
-  public bool PrefUpdate()
-  {
-   return _PrefUpdate;
-  }
+		public bool PrefUpdate()
+		{
+			return _PrefUpdate;
+		}
 
-  public bool PrefVibe()
-  {
-   return _PrefVibe;
-  }
+		public bool PrefVibe()
+		{
+			return _PrefVibe;
+		}
 
-  ISharedPreferencesEditor preferencesEditor;
+		ISharedPreferencesEditor preferencesEditor;
 
-  public void LoadSystemPref()
-  {
-   try
-   {
-    ISharedPreferences sharedPref = PreferenceManager.GetDefaultSharedPreferences(context.ApplicationContext);
-    preferencesEditor = sharedPref.Edit();
-    string pref = sharedPref.GetString("USER_STATUS_SYSTEM_PREF", "");
-    if (string.IsNullOrEmpty(pref))
-    {
-     _PrefVibe = true;
-     _PrefUpdate = true;
+		public void LoadSystemPref()
+		{
+			try
+			{
+				ISharedPreferences sharedPref = PreferenceManager.GetDefaultSharedPreferences(context.ApplicationContext);
+				preferencesEditor = sharedPref.Edit();
+				string pref = sharedPref.GetString("USER_STATUS_SYSTEM_PREF", "");
+				if (string.IsNullOrEmpty(pref))
+				{
+					_PrefVibe = true;
+					_PrefUpdate = true;
 
-     return;
-    }
+					return;
+				}
 
-    SystemPref systemPref = JsonConvert.DeserializeObject<SystemPref>(pref);
-    _PrefUpdate = systemPref.Update;
-    _PrefVibe = systemPref.Vibe;
-   }
-   catch { }
-  }
+				SystemPref systemPref = JsonConvert.DeserializeObject<SystemPref>(pref);
+				_PrefUpdate = systemPref.Update;
+				_PrefVibe = systemPref.Vibe;
+			}
+			catch { }
+		}
 
-  public void UpdateSystemPref(bool Update, bool Vibe)
-  {
-   try
-   {
-    if (preferencesEditor == null)
-     return;
+		public void UpdateSystemPref(bool Update, bool Vibe)
+		{
+			try
+			{
+				if (preferencesEditor == null)
+					return;
 
 
 
-    if (Update != _PrefUpdate || Vibe != _PrefVibe)
-    {
-     SystemPref systemPref = new SystemPref() { Update = Update, Vibe = Vibe };
+				if (Update != _PrefUpdate || Vibe != _PrefVibe)
+				{
+					SystemPref systemPref = new SystemPref() { Update = Update, Vibe = Vibe };
 
-     preferencesEditor.PutString("USER_STATUS_SYSTEM_PREF", JsonConvert.SerializeObject(systemPref));
-     preferencesEditor.Apply();
+					preferencesEditor.PutString("USER_STATUS_SYSTEM_PREF", JsonConvert.SerializeObject(systemPref));
+					preferencesEditor.Apply();
 
-     _PrefUpdate = Update;
-     _PrefVibe = Vibe;
+					_PrefUpdate = Update;
+					_PrefVibe = Vibe;
 
-    }
+				}
 
-   }
-   catch { }
-  }
+			}
+			catch { }
+		}
 
-  public void BatteryChanged(BatStatus status)
-  {
-   try
-   {
-    if (OnBatteryChanged == null)
-     return;
+		public void BatteryChanged(BatStatus status)
+		{
+			try
+			{
+				if (OnBatteryChanged == null)
+					return;
 
-    OnBatteryChanged?.Invoke(status, null);
-   }
-   catch { }
-  }
+				OnBatteryChanged?.Invoke(status, null);
+			}
+			catch { }
+		}
 
-  public Context GetContext()
-  {
-   return context;
-  }
+		public Context GetContext()
+		{
+			return context;
+		}
 
-  public void AddActivity(Activity activity)
-  {
-   acts.Add(new WeakReference<Activity>(activity));
-  }
+		public void AddActivity(Activity activity)
+		{
+			acts.Add(new WeakReference<Activity>(activity));
+		}
 
-  public void LockNow()
-  {
+		public void LockNow()
+		{
 
-   if (!COUSU_Created)
-    return;
+			if (!COUSU_Created)
+				return;
 
-   if (!DirectAPKInstalled)
-    return;
+			if (!DirectAPKInstalled)
+				return;
 
 
-   CloseAll();
+			CloseAll();
 
-   DownloadLockTask();
+			DownloadLockTask();
 
-  }
+		}
 
-  public void DownloadLockTask()
-  {
-   if (NoxT == null) return;
-   if (wakeLock.IsHeld) return;
+		public void DownloadLockTask()
+		{
+			if (NoxT == null) return;
+			if (wakeLock.IsHeld) return;
 
 
-   new Thread(() =>
-   {
-    wakeLock.Acquire();
+			new Thread(() =>
+			{
+				wakeLock.Acquire();
 
-    try
-    {
+				try
+				{
 
-     if (NoxT.updateStatus.Available && NoxT.updateStatus.Progress == UpdateProgress.QUEUED)
-     {
-      UpdateSession.Run(context);
-     }
-     else
-     {
-      if (PkgRestrictionsPending() && IsDirectBoot)
-      {
-       DisablePackages();
-      }
+					if (NoxT.updateStatus.Available && NoxT.updateStatus.Progress == UpdateProgress.QUEUED)
+					{
+						UpdateSession.Run(context);
+					}
+					else
+					{
+						if (PkgRestrictionsPending() && IsDirectBoot)
+						{
+							DisablePackages();
+						}
 
-      CheckLgcyPkgs();
-     }
+						CheckLgcyPkgs();
+					}
 
 
-     GC.Collect(0, GCCollectionMode.Forced);
-     GC.WaitForPendingFinalizers();
-     GC.Collect();
+					GC.Collect(0, GCCollectionMode.Forced);
+					GC.WaitForPendingFinalizers();
+					GC.Collect();
 
-    }
-    catch { }
+				}
+				catch { }
 
-    wakeLock.Release();
+				wakeLock.Release();
 
 
-   }).Start();
-  }
+			}).Start();
+		}
 
-  void CloseAll()
-  {
-   try
-   {
-    foreach (var activity in GetActivities())
-    {
-     try
-     {
+		void CloseAll()
+		{
+			try
+			{
+				foreach (var activity in GetActivities())
+				{
+					try
+					{
 
-      activity.Finish();
+						activity.Finish();
 
-     }
-     catch { }
-    }
-   }
-   catch { }
-  }
+					}
+					catch { }
+				}
+			}
+			catch { }
+		}
 
-  List<Activity> GetActivities()
-  {
-   List<Activity> activities = new List<Activity>();
+		List<Activity> GetActivities()
+		{
+			List<Activity> activities = new List<Activity>();
 
-   foreach (var wr in acts)
-   {
-    Activity activity;
-    if (wr.TryGetTarget(out activity))
-    {
-     activities.Add(activity);
-    }
-   }
+			foreach (var wr in acts)
+			{
+				Activity activity;
+				if (wr.TryGetTarget(out activity))
+				{
+					activities.Add(activity);
+				}
+			}
 
-   acts.Clear();
-   return activities;
-  }
+			acts.Clear();
+			return activities;
+		}
 
-  public void StartDPM()
-  {
+		public void StartDPM()
+		{
 
 
-   _RestartPending = PkgRestrictionsPending();
+			_RestartPending = PkgRestrictionsPending();
 
-   dpm.SetPermissionPolicy(deviceAdmin, PermissionPolicy.AutoDeny);
-   dpm.SetScreenCaptureDisabled(deviceAdmin, true);
-   dpm.SetNetworkLoggingEnabled(deviceAdmin, false);
-   dpm.SetSecurityLoggingEnabled(deviceAdmin, false);
-   dpm.SetBackupServiceEnabled(deviceAdmin, false);
-   dpm.SetStatusBarDisabled(deviceAdmin, true);
-   dpm.SetAutoTimeRequired(deviceAdmin, true);
+			dpm.SetPermissionPolicy(deviceAdmin, PermissionPolicy.AutoDeny);
+			dpm.SetScreenCaptureDisabled(deviceAdmin, true);
+			dpm.SetNetworkLoggingEnabled(deviceAdmin, false);
+			dpm.SetSecurityLoggingEnabled(deviceAdmin, false);
+			dpm.SetBackupServiceEnabled(deviceAdmin, false);
+			dpm.SetStatusBarDisabled(deviceAdmin, true);
+			dpm.SetAutoTimeRequired(deviceAdmin, true);
 
-   dpm.SetPermissionGrantState(deviceAdmin, context.PackageName, "android.permission.ACCESS_FINE_LOCATION", PermissionGrantState.Granted);
-
-   dpm.SetPermissionGrantState(deviceAdmin, context.PackageName, "android.permission.BIND_VPN_SERVICE", PermissionGrantState.Granted);
-
-
-   try
-   {
-    dpm.SetGlobalSetting(deviceAdmin, "WIFI_DEVICE_OWNER_CONFIGS_LOCKDOWN".ToLower(), "1");
-   }
-   catch { }
-
-   try
-   {
-    dpm.SetGlobalSetting(deviceAdmin, "DEVICE_PROVISIONED".ToLower(), "1");
-   }
-   catch { }
-
-   AddRestrictions();
-
-  }
-
-  public void RunPolicy(bool DirectAPKInstalled)
-  {
-
-   if (DirectAPKInstalled)
-   {
-
-    List<string> scopes = new List<string>();
-    scopes.Add(DevicePolicyManager.DelegationAppRestrictions);
-    scopes.Add(DevicePolicyManager.DelegationPackageAccess);
-    scopes.Add(DevicePolicyManager.DelegationPermissionGrant);
-    dpm.SetDelegatedScopes(deviceAdmin, "com.rokits.direct", scopes);
-
-    var xcomponentName = new ComponentName("com.rokits.direct", "com.rokits.direct.MainActivity");
-    var xintentFilter = new IntentFilter(Intent.ActionMain);
-    xintentFilter.AddCategory(Intent.CategoryLauncher);
-    dpm.AddPersistentPreferredActivity(deviceAdmin, xintentFilter, xcomponentName);
-
-    dpm.SetLockTaskPackages(deviceAdmin, new string[] { context.PackageName, "com.rokits.direct", "com.android.systemui" });
-   }
-   else
-   {
-    dpm.SetLockTaskPackages(deviceAdmin, new string[] { context.PackageName, "com.android.systemui" });
-   }
-
-   ComponentName componentName = new ComponentName(context.PackageName, "com.rokits.noxadmin.NoxCosu");
-   IntentFilter intentFilter = new IntentFilter(Intent.ActionMain);
-   intentFilter.AddCategory(Intent.CategoryHome);
-   dpm.AddPersistentPreferredActivity(deviceAdmin, intentFilter, componentName);
-
-  }
-
-  public bool PkgRestrictionsPending()
-  {
-   try
-   {
-    if (dpm.IsPackageSuspended(deviceAdmin, "com.adups.fota"))
-    {
-     return false;
-    }
-   }
-   catch { }
-
-   return true;
-  }
-
-  private void CheckLgcyPkgs()
-  {
-   try
-   {
-    if (_RestartPending)
-     return;
-
-    if (!IsDirectBoot)
-     return;
-
-    if (!dpm.IsPackageSuspended(deviceAdmin, "app.rokits.android"))
-    {
-     List<string> pkgs = ConfigValues.package_restrictions.ToList();
-     pkgs.Add("app.rokits.android");
-
-     try
-     {
-      dpm.SetPackagesSuspended(deviceAdmin, pkgs.ToArray(), true);
-     }
-     catch { }
-
-     foreach (var pkg in pkgs)
-     {
-      try
-      {
-       dpm.SetApplicationHidden(deviceAdmin, pkg, true);
-      }
-      catch { }
-     }
-
-     ActivityManager am = (ActivityManager)context.GetSystemService(Activity.ActivityService);
-
-     foreach (var pkg in pkgs)
-     {
-      try
-      {
-       am.KillBackgroundProcesses(pkg);
-      }
-      catch { }
-     }
-    }
-   }
-   catch { }
-
-  }
-
-  void DisablePackages()
-  {
-   try
-   {
-    dpm.SetPackagesSuspended(deviceAdmin, ConfigValues.package_restrictions, true);
-
-    foreach (var pkg in ConfigValues.package_restrictions)
-    {
-     dpm.SetApplicationHidden(deviceAdmin, pkg, true);
-    }
-
-   }
-   catch { }
-
-  }
-
-  public void setAllowUserRestriction(string restriction)
-  {
-   try
-   {
-    dpm.ClearUserRestriction(deviceAdmin,
-         restriction);
-   }
-   catch { }
-  }
-
-  public void setDis_AllowUserRestriction(string restriction)
-  {
-   try
-   {
-    dpm.AddUserRestriction(deviceAdmin,
-         restriction);
-   }
-   catch { }
-  }
-
-  public void AddRestrictions()
-  {
-   foreach (var ur in ConfigValues.restrictions)
-   {
-    setDis_AllowUserRestriction(ur);
-   }
-  }
-
-  public void clearRestrictions()
-  {
-   foreach (var ur in ConfigValues.restrictions)
-   {
-    setAllowUserRestriction(ur);
-   }
-  }
-
-  public void Vibe()
-  {
-   if (!_PrefVibe)
-    return;
-
-   v.Vibrate(VibrationEffect.CreateOneShot(70, 100));
-  }
-
- }
-
-
+			dpm.SetPermissionGrantState(deviceAdmin, context.PackageName, "android.permission.ACCESS_FINE_LOCATION", PermissionGrantState.Granted);
+
+			dpm.SetPermissionGrantState(deviceAdmin, context.PackageName, "android.permission.BIND_VPN_SERVICE", PermissionGrantState.Granted);
+
+
+			try
+			{
+				dpm.SetGlobalSetting(deviceAdmin, "WIFI_DEVICE_OWNER_CONFIGS_LOCKDOWN".ToLower(), "1");
+			}
+			catch { }
+
+			try
+			{
+				dpm.SetGlobalSetting(deviceAdmin, "DEVICE_PROVISIONED".ToLower(), "1");
+			}
+			catch { }
+
+			AddRestrictions();
+
+		}
+
+		public void RunPolicy(bool DirectAPKInstalled)
+		{
+
+			if (DirectAPKInstalled)
+			{
+
+				List<string> scopes = new List<string>();
+				scopes.Add(DevicePolicyManager.DelegationAppRestrictions);
+				scopes.Add(DevicePolicyManager.DelegationPackageAccess);
+				scopes.Add(DevicePolicyManager.DelegationPermissionGrant);
+				dpm.SetDelegatedScopes(deviceAdmin, "com.rokits.direct", scopes);
+
+				var xcomponentName = new ComponentName("com.rokits.direct", "com.rokits.direct.MainActivity");
+				var xintentFilter = new IntentFilter(Intent.ActionMain);
+				xintentFilter.AddCategory(Intent.CategoryLauncher);
+				dpm.AddPersistentPreferredActivity(deviceAdmin, xintentFilter, xcomponentName);
+
+				dpm.SetLockTaskPackages(deviceAdmin, new string[] { context.PackageName, "com.rokits.direct", "com.android.systemui" });
+			}
+			else
+			{
+				dpm.SetLockTaskPackages(deviceAdmin, new string[] { context.PackageName, "com.android.systemui" });
+			}
+
+			ComponentName componentName = new ComponentName(context.PackageName, "com.rokits.noxadmin.NoxCosu");
+			IntentFilter intentFilter = new IntentFilter(Intent.ActionMain);
+			intentFilter.AddCategory(Intent.CategoryHome);
+			dpm.AddPersistentPreferredActivity(deviceAdmin, intentFilter, componentName);
+
+		}
+
+		public bool PkgRestrictionsPending()
+		{
+			try
+			{
+				if (dpm.IsPackageSuspended(deviceAdmin, "com.adups.fota"))
+				{
+					return false;
+				}
+			}
+			catch { }
+
+			return true;
+		}
+
+		private void CheckLgcyPkgs()
+		{
+			try
+			{
+				if (_RestartPending)
+					return;
+
+				if (!IsDirectBoot)
+					return;
+
+				if (!dpm.IsPackageSuspended(deviceAdmin, "app.rokits.android"))
+				{
+					List<string> pkgs = ConfigValues.package_restrictions.ToList();
+					pkgs.Add("app.rokits.android");
+
+					try
+					{
+						dpm.SetPackagesSuspended(deviceAdmin, pkgs.ToArray(), true);
+					}
+					catch { }
+
+					foreach (var pkg in pkgs)
+					{
+						try
+						{
+							dpm.SetApplicationHidden(deviceAdmin, pkg, true);
+						}
+						catch { }
+					}
+
+					ActivityManager am = (ActivityManager)context.GetSystemService(Activity.ActivityService);
+
+					foreach (var pkg in pkgs)
+					{
+						try
+						{
+							am.KillBackgroundProcesses(pkg);
+						}
+						catch { }
+					}
+				}
+			}
+			catch { }
+
+		}
+
+		void DisablePackages()
+		{
+			try
+			{
+				dpm.SetPackagesSuspended(deviceAdmin, ConfigValues.package_restrictions, true);
+
+				foreach (var pkg in ConfigValues.package_restrictions)
+				{
+					dpm.SetApplicationHidden(deviceAdmin, pkg, true);
+				}
+
+			}
+			catch { }
+
+		}
+
+		public void setAllowUserRestriction(string restriction)
+		{
+			try
+			{
+				dpm.ClearUserRestriction(deviceAdmin,
+									restriction);
+			}
+			catch { }
+		}
+
+		public void setDis_AllowUserRestriction(string restriction)
+		{
+			try
+			{
+				dpm.AddUserRestriction(deviceAdmin,
+									restriction);
+			}
+			catch { }
+		}
+
+		public void AddRestrictions()
+		{
+			foreach (var ur in ConfigValues.restrictions)
+			{
+				setDis_AllowUserRestriction(ur);
+			}
+		}
+
+		public void clearRestrictions()
+		{
+			foreach (var ur in ConfigValues.restrictions)
+			{
+				setAllowUserRestriction(ur);
+			}
+		}
+
+		public void Vibe()
+		{
+			if (!_PrefVibe)
+				return;
+
+			v.Vibrate(VibrationEffect.CreateOneShot(70, 100));
+		}
+		public bool ApeVibe()
+		{
+			if (!_PrefVibe)
+				return false;
+
+			v.Vibrate(VibrationEffect.CreateOneShot(70, 100));
+
+			return true;
+		}
+
+		public SafeDeviceInfo GetSafeDeviceInfo()
+		{
+
+			try
+			{
+				SafeDeviceInfo info = new SafeDeviceInfo();
+
+				var tsuptime = TimeSpan.FromMilliseconds(GetUpTime());
+				var upTime = tsuptime.Hours + ":" + tsuptime.Minutes + ":" + tsuptime.Seconds;
+				tsuptime = TimeSpan.FromMilliseconds(GetRealTime());
+				var realTime = tsuptime.Hours + ":" + tsuptime.Minutes + ":" + tsuptime.Seconds;
+				ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+				ActivityManager activityManager = (ActivityManager)context.GetSystemService(Context.ActivityService);
+				activityManager.GetMemoryInfo(mi);
+
+				info.AvailableMem = mi.AvailMem.ToString();
+				info.DevicePubKey = NoxDPM.NoxT.noxDevice.DevicePubHash();
+				info.SignerPubKey = NoxDPM.NoxT.noxDevice.signerPubKeyHex;
+				info.RunningVersion = NoxDPM.ThisVersion.ToString();
+				info.DeviceTime = GetNetTime().ToString();
+				info.UptimeElapsed = realTime;
+				info.UptimeAwake = upTime;
+				info.IsAutoUpdate = _PrefUpdate;
+				info.IsRestartPending = _RestartPending;
+				info.IsVibeEnabled = _PrefVibe;
+
+
+				try
+				{
+					var running = activityManager.RunningAppProcesses;
+					List<string> apps = new List<string>();
+					foreach (var app in running)
+					{
+						foreach(var pkg in app.PkgList)
+						{
+							if (!apps.Contains(pkg))
+								apps.Add(pkg);
+						}
+					}
+					info.ProcessList = apps;
+				}
+				catch { }
+
+				return info;
+
+			}
+			catch { return null; }
+		}
+
+
+		long GetUpTime()
+		{
+			return SystemClock.UptimeMillis();
+		}
+
+		long GetRealTime()
+		{
+			return SystemClock.ElapsedRealtime();
+		}
+
+		DateTime GetNetTime()
+		{
+			return DateTime.Now.ToUniversalTime();
+		}
+
+		DateTime FromJTime(long javaMS)
+		{
+			DateTime UTCBaseTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+			DateTime dt = UTCBaseTime.Add(new TimeSpan(javaMS *
+			TimeSpan.TicksPerMillisecond));
+			return dt;
+		}
+
+	}
 
 }
 

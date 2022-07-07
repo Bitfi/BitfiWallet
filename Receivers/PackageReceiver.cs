@@ -33,7 +33,7 @@ namespace BitfiWallet
      int BatLevel = intent.GetIntExtra(BatteryManager.ExtraLevel, -1);
 
      int BatCharging = 0;
-     if (pluggedIn > 0 || status == 2)
+     if (pluggedIn == 1 || pluggedIn == 2 || status == 2)
      {
       BatCharging = 1;
      }

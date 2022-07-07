@@ -121,7 +121,7 @@ namespace BitfiWallet
     if (string.IsNullOrEmpty(rate))
     {
      runsms = false;
-     rate = "NO WIFI INTERNET";
+     rate = "WAITING FOR NETWORK";
     }
 
     if (NoxDPM.updateStatus.Available)
@@ -252,7 +252,7 @@ namespace BitfiWallet
 
   string GetRateString(string rate)
   {
-   return "1 Bitcoin = " + rate + " USD";
+   return rate + " BTC/USD";
   }
 
   async Task<string> CaptiveRequest()

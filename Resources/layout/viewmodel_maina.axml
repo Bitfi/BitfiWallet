@@ -24,7 +24,7 @@ android:paddingTop="140dp"
 			android:orientation="vertical"			
 			android:paddingLeft="20dp"
 			android:paddingRight="20dp"
-			android:visibility="visible"
+			android:visibility="gone"
 			android:backgroundTint="@color/bar3"
 			android:background="@color/black_overlay"	
 			android:paddingTop="35dp"
@@ -64,13 +64,13 @@ android:paddingTop="140dp"
 				android:id="@+id/tvliktv65"
 				android:layout_marginTop="20dp"
 				android:layout_marginBottom="15dp"
-				android:text="SEND THIS TRANSACTION NOW?"
+				android:text="SEND TRANSACTION NOW?"
 				android:paddingLeft="10dp"
 				android:textColor="@color/lg"
-				android:textSize="14sp"
+				android:textSize="15sp"
 				android:textStyle="bold"
 				android:typeface="normal"
-				android:visibility="gone"
+				android:visibility="visible"
 			/>
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -145,7 +145,26 @@ android:paddingTop="140dp"
 						android:visibility="gone">
 					</Button>
 				</LinearLayout>
+
 			</RelativeLayout>
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/tvvmWarning"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="15dp"
+				android:text="Your Bitfi hardware did not create this transaction and cannot assert the underlying contract. The transaction provider will receive full signature and broadcast it. Be sure that you trust the protocol with which you are interacting."
+				android:paddingLeft="12dp"
+				android:paddingRight="22dp"
+				android:textColor="@color/lg"
+				android:textSize="24sp"
+				android:textStyle="bold"
+				android:lineSpacingExtra="4px"
+				
+				android:typeface="normal"
+				android:visibility="gone"
+			/>
 			<ListView
 				android:id="@android:id/list"
 				android:layout_width="match_parent"

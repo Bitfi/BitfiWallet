@@ -65,7 +65,7 @@ namespace WalletLibrary.Core.Concrete.Wallets
 
 				var chainID = new BigInteger((int)Chain.XinFinMainnet);
 
-				var tx = new TransactionChainId(to, amount, nonce, gasPrice, gasLimit, chainID);
+				var tx = new TransactionChainId(to, amount, nonce, gasPrice, gasLimit, chainID, "");
 				tx.Sign(key);
 				var signedHex = tx.ToHex();
 

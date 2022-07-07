@@ -25,10 +25,13 @@ namespace BitfiWallet.DeviceManager
 
   public NoxNotification NoxNotification { get; }
 
+  public NoxChannel NoxChannel { get; }
+
   public noxadmin(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
   {
    Device = new NoxDevice(this);
    NoxNotification = new NoxNotification();
+   NoxChannel = new NoxChannel();
   }
 
   public override void OnCreate()
@@ -71,6 +74,8 @@ namespace BitfiWallet.DeviceManager
    if (activity.LocalClassName.ToLower().Contains("messageactivity"))
     return;
 
+   if (activity.LocalClassName.ToLower().Contains("metaactivity"))
+    return;
 
    NoxDPM.AddActivity(activity);
 

@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using DagLibrary;
+using EthereumLibrary.Signer;
 using NBitcoin;
 using Newtonsoft.Json;
 using NoxKeys;
@@ -14,73 +15,117 @@ using WalletLibrary.Core.Abstract;
 
 namespace WalletLibrary.Core.Concrete.Wallets
 {
-  public class DagWallet : CommonWallet, IWallet
-  {
-    public string Symbol { get; private set; } = "dag";
+	public class DagWallet : CommonWallet, IWallet
+	{
+		public string Symbol { get; private set; } = "dag";
 
-    private NoxKeyGen NoxKeyGen;
+		private NoxKeyGen NoxKeyGen;
 
-    public DagWallet(KeySet[] keySets, WalletFactory.Products product = WalletFactory.Products.DAG)
-      : base(keySets, product)
-    {
-      NoxKeyGen = new NoxKeyGen(keySets);
-    }
+		public DagWallet(KeySet[] keySets, WalletFactory.Products product = WalletFactory.Products.DAG)
+				: base(keySets, product)
+		{
+			NoxKeyGen = new NoxKeyGen(keySets);
+		}
 
-    public string GetLegacyAddress(uint index = 0)
-    {
-      if (!HasIndex(index))
-        throw new Exception(String.Format("Unable to find such index: {0} in the wallet", index));
+		public string GetLegacyAddress(uint index = 0)
+		{
+			if (!HasIndex(index))
+				throw new Exception(String.Format("Unable to find such index: {0} in the wallet", index));
 
-      using (var privateKey = KeySets[0].Key.GetPrivateKey())
-      {
-        return DagLibrary.Account.GetDagAddressFromPrivateKey(privateKey.Value);
-      }
-    }
+			using (var privateKey = KeySets[0].Key.GetPrivateKey())
+			{
+				return DagLibrary.Account.GetDagAddressFromPrivateKey(privateKey.Value);
+			}
+		}
 
-    public PaymentRequestResponse SignPaymentRequest(NoxTxnProcess req)
-    {
+		public string GetPubKey(uint index = 0)
+		{
+			if (!HasIndex(index))
+				throw new Exception(String.Format("Unable to find such index: {0} in the wallet", index));
 
-      LastTxRef lastTxRef = JsonConvert.DeserializeObject<LastTxRef>
-        (System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(req.MXTxn)));
+			using (var privateKey = KeySets[0].Key.GetPrivateKey())
+			{
+				return DagLibrary.Account.GetPublicKeyFromPrivatekey(privateKey.Value, false);
+			}
+		}
 
-      using (var privateKey = KeySets[0].Key.GetPrivateKey())
-      {
+		public PaymentRequestResponse SignPaymentRequest(NoxTxnProcess req)
+		{
 
-        var addr = DagLibrary.Account.GetDagAddressFromPrivateKey(privateKey.Value);
+			LastTxRef lastTxRef = JsonConvert.DeserializeObject<LastTxRef>
+					(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(req.MXTxn)));
 
-        if (addr != req.NoxAddress.BTCAddress)
-          throw new Exception(Sclear.MSG_ERROR_SIGNMESSAGE);
+			using (var privateKey = KeySets[0].Key.GetPrivateKey())
+			using (var publicKey = KeySets[0].Key.GetPublicKey(false))
+			{
 
-        DagLibrary.Transaction transaction = new DagLibrary.Transaction(addr, req.ToAddress, Convert.ToDecimal(req.Amount),
-          Convert.ToDecimal(req.FeeTotal), lastTxRef);
+				var uncompressedPk = publicKey.Value.ByteToHex();
+				var addr = DagLibrary.Account.GetDagAddressFromPrivateKey(privateKey.Value);
 
-        bool signed = transaction.sign(privateKey.Value);
+				if (addr != req.NoxAddress.BTCAddress)
+					throw new Exception(Sclear.MSG_ERROR_SIGNMESSAGE);
 
-        if (!signed)
-          throw new Exception("Invalid transaction or not fully signed.");
+				DagLibrary.Transaction transaction = new DagLibrary.Transaction(addr, req.ToAddress, Convert.ToDecimal(req.Amount),
+						Convert.ToDecimal(req.FeeTotal), lastTxRef);
 
-        var json = JsonConvert.SerializeObject(transaction.tx);
-        var b64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
+				bool signed = transaction.sign(privateKey.Value, uncompressedPk);
 
-        PaymentRequestResponse response = new PaymentRequestResponse();
-        var addition = new Addition { };
-        response.TxnHex = b64;
-        addition.FeeAmount = req.FeeTotal;
-        response.Addition = addition;
-        return response;
-      }
+				if (!signed)
+					throw new Exception("Invalid transaction or not fully signed.");
 
-    }
+				var json = JsonConvert.SerializeObject(transaction.tx);
+				var b64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
 
-    public string GetSegwitAddress(uint index = 0)
-    {
-      throw new NotImplementedException();
-    }
+				PaymentRequestResponse response = new PaymentRequestResponse();
+				var addition = new Addition { };
+				response.TxnHex = b64;
+				addition.FeeAmount = req.FeeTotal;
+				response.Addition = addition;
+				return response;
+			}
 
-    public MsgTaskTransferResponse SignMessage(NoxMsgProcess req)
-    {
-      throw new NotImplementedException();
-    }
-  }
+		}
+
+		public string GetSegwitAddress(uint index = 0)
+		{
+			throw new NotImplementedException();
+		}
+
+		public MsgTaskTransferResponse SignMessage(NoxMsgProcess req)
+		{
+
+			MsgTaskTransferResponse response = new MsgTaskTransferResponse();
+			byte[] Msg = Convert.FromBase64String(req.Msg);
+
+			using (var privateKey = KeySets[0].Key.GetPrivateKey())
+			using (var publicKey = KeySets[0].Key.GetPublicKey(false))
+			{
+
+				var addr = DagLibrary.Account.GetDagAddressFromPrivateKey(privateKey.Value);
+
+				if (addr != req.NoxAddress.BTCAddress)
+					throw new Exception(Sclear.MSG_ERROR_SIGNMESSAGE);
+
+				var data = DagSigner.HashPrefixedMessage(Msg);
+				var sig = DagSigner.DagSign(privateKey.Value, System.Text.Encoding.UTF8.GetString(data));
+				response.MsgSig = sig.ByteToHex();
+
+				var valid = DagSigner.DagVerify(publicKey.Value, System.Text.Encoding.UTF8.GetString(data),
+					sig.ByteToHex());
+
+				if (!valid)
+					throw new Exception("Not fully signed.");
+
+				return response;
+			}
+
+		}
+
+		public MsgTaskTransferResponse SignBlindMessage(NoxMsgProcess req)
+		{
+			throw new Exception("Not implemented.");
+		}
+
+	}
 
 }

@@ -145,7 +145,10 @@ namespace BitfiWallet
 
   private void Device_OnBatteryChanged(object sender, EventArgs e)
   {
-   NoxT.batStatus = (BatStatus)sender;
+   lock (NoxT.batStatus)
+   {
+    NoxT.batStatus = (BatStatus)sender;
+   }
   }
 
   public static Context GetContext()

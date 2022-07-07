@@ -113,8 +113,8 @@ namespace EthereumLibrary.Signer
           r, s, v, NUMBER_ENCODING_ELEMENTS);
     }
 
-    public TransactionChainId(string to, BigInteger amount, BigInteger nonce, BigInteger chainId)
-        : this(to, amount, nonce, DEFAULT_GAS_PRICE, DEFAULT_GAS_LIMIT, chainId)
+    public TransactionChainId(string to, BigInteger amount, BigInteger nonce, BigInteger chainId, string contract)
+        : this(to, amount, nonce, DEFAULT_GAS_PRICE, DEFAULT_GAS_LIMIT, chainId, contract)
     {
     }
 
@@ -124,8 +124,8 @@ namespace EthereumLibrary.Signer
     }
 
     public TransactionChainId(string to, BigInteger amount, BigInteger nonce, BigInteger gasPrice,
-        BigInteger gasLimit, BigInteger chainId)
-        : this(to, amount, nonce, gasPrice, gasLimit, "", chainId)
+        BigInteger gasLimit, BigInteger chainId, string contract)
+        : this(to, amount, nonce, gasPrice, gasLimit, contract, chainId)
     {
     }
 

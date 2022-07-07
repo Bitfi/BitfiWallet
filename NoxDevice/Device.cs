@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Org.BouncyCastle.Math;
 using NoxKeys;
+using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto.Parameters;
 
 namespace BitfiWallet
 {
@@ -23,13 +25,26 @@ namespace BitfiWallet
 
 		public Device(Key _TEEKey, Guid _DeviceID)
 		{
+
 			TEEKey = _TEEKey;
 			DeviceID = _DeviceID;
 			TEEPubKey = TEEKey.PubKey;
 			WALLETID = DeviceID.ToString().ToUpper().Replace("-", "").Substring(0, 6);
 			WS_PUB = new BitcoinPubKeyAddress(new KeyId(new byte[] { 146, 17, 90, 20, 206, 41, 255, 170, 171, 24, 82, 234, 70, 248, 115, 63, 247, 55, 93, 61 }), Network.Main);
 			MsgCount = 0;
+
+			try
+			{
+				byte[] vch = TEEKey.ToBytes();
+				eCPrivate = WalletLibrary.NoxShared.ECKEY.GetECPrivate(new NoxManagedArray(vch, vch.Length));
+				TEEPubCompressed = new NBitcoin.PubKey(TEEPubKey.ToBytes()).Compress(true);
+			}
+			catch { }
 		}
+
+		private readonly ECPrivateKeyParameters eCPrivate;
+
+		public PubKey TEEPubCompressed { get; private set; }
 
 		static readonly byte[] pkgSigner = new byte[] { 4, 153, 122, 107, 94, 140, 29, 86, 213, 157, 43, 169, 181, 243, 252, 221, 40, 227, 11, 44, 178, 46, 202, 76, 5, 58, 41, 38, 25, 182, 168, 92, 145, 178, 26, 210, 214, 34, 166, 223, 240, 107, 95, 174, 4, 91, 137, 160, 153, 242, 39, 140, 188, 132, 31, 42, 134, 6, 174, 125, 198, 106, 48, 234, 152 };
 
@@ -159,6 +174,15 @@ namespace BitfiWallet
 		public Dictionary<Guid, WalletLibrary.NoxShared.SharedSession> sharedSessions = new Dictionary<Guid, WalletLibrary.NoxShared.SharedSession>();
 		public NoxKeys.SignTransferResponse signTransferResponse { get; set; }
 
-	}
 
+		public byte[] GetSharedSecret(byte[] pubKey)
+		{
+			using (SHA256Managed sha = new SHA256Managed())
+			{
+				return sha.ComputeHash(WalletLibrary.NoxShared.ECKEY.GetSharedPubkey(eCPrivate, WalletLibrary.NoxShared.ECKEY.GetECPublic(pubKey)));
+
+			}
+		}
+
+	}
 }
