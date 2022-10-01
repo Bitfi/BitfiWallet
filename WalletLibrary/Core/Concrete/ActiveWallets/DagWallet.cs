@@ -68,7 +68,10 @@ namespace WalletLibrary.Core.Concrete.ActiveWallets
 
 				LastTxRef lastTxRef = JsonConvert.DeserializeObject<LastTxRef>(info.LastTxRef);
 
-				DagLibrary.Transaction transaction = new DagLibrary.Transaction(addr, info.To, info.Amount, info.FeeValue, lastTxRef);
+				if (!string.IsNullOrEmpty(lastTxRef.hash))
+					lastTxRef.prevHash = lastTxRef.hash;
+
+				DagLibrary.TransactionV2 transaction = new DagLibrary.TransactionV2(addr, info.To, info.Amount, info.FeeValue, lastTxRef);
 
 				bool signed = transaction.sign(privateKey.Value, uncompressedPk);
 

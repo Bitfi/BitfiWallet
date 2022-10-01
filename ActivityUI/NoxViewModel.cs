@@ -207,6 +207,9 @@ namespace BitfiWallet
 				Action workerThread = delegate ()
 				{
 
+					if (string.IsNullOrEmpty(resp))
+						resp = "Network unavailable.";
+
 					string title = "";
 					string pbtn = "";
 

@@ -85,15 +85,7 @@ namespace WalletLibrary.Core.Concrete.Wallets
 
     public XMRTaskImageResponse GetImages(ImageRequestTable[] requestTable)
     {
-      XMRTaskImageResponse response = new XMRTaskImageResponse();
-      
-      NoxKeys.MoneroWallet.XMRGen xMRGen = new NoxKeys.MoneroWallet.XMRGen(xmrWallet);
-      var resp = xMRGen.XMR_GetImages(requestTable);
-        
-      response.SpendKeyImages = resp.SpendKeyImages;
-      response.WalletAddress = resp.WalletAddress;
-        
-      return response;
+     throw new NotImplementedException();
     }
     
     public string GetViewKey()

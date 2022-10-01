@@ -87,12 +87,6 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<AndroidNativeLibrary Include="lib\armeabi-v7a\libc++_shared.so">
-		  <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-		</AndroidNativeLibrary>
-		<AndroidNativeLibrary Include="lib\armeabi-v7a\libnativelib.so" />
-	</ItemGroup>
-	<ItemGroup>
 		<Compile Include="WalletLibrary\Swap\Changelly.cs" />
 		<Compile Include="WalletLibrary\NoxShared\NoxParagraph.cs" />
 		<Compile Include="WalletLibrary\NoxShared\SleepProcessor.cs" />
@@ -2450,6 +2444,7 @@
 		<Compile Include="WalletLibrary\ActiveApe\ECKEY.cs" />
 		<Compile Include="WalletLibrary\ActiveApe\Extensions.cs" />
 		<Compile Include="WalletLibrary\Core\WalletSessions.cs" />
+		<Compile Include="WalletLibrary\DagLibrary\TransactionV2.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Web References\BITFIDEV\DEVTOOL.disco" />
@@ -2493,10 +2488,6 @@
 		<AndroidAsset Include="Assets\Rubik-Regular.ttf">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</AndroidAsset>
-		<AndroidNativeLibrary Include="lib\armeabi-v7a\libbitfi_entry_armeabi-v7a_Release.so">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<Generator>MSBuild:UpdateGeneratedFiles</Generator>
-		</AndroidNativeLibrary>
 		<AndroidResource Include="Resources\xml\device_admin.xml">
 			<SubType>Designer</SubType>
 			<Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -2884,6 +2875,7 @@
 	  <Folder Include="WalletLibrary\Core\Concrete\ActiveWallets\" />
 	  <Folder Include="WalletLibrary\ActiveApe\" />
 	  <Folder Include="WalletLibrary\ActiveApe\ApeShift\" />
+	  <Folder Include="lib\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
@@ -3371,6 +3363,80 @@
 	    <RelPath>Web References\SGADWS</RelPath>
 	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
 	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\BITFIDEV</RelPath>
+	    <UpdateFromURL>https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\NOXWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/NOXWS2.asmx?wsdl</UpdateFromURL>
+	  </WebReferenceUrl>
+	  <WebReferenceUrl Include="https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco">
+	    <UrlBehavior>Dynamic</UrlBehavior>
+	    <RelPath>Web References\SGADWS</RelPath>
+	    <UpdateFromURL>https://bitfi.com/NoxPortalWS/V1/SGADWS.asmx?disco</UpdateFromURL>
+	  </WebReferenceUrl>
+	</ItemGroup>
+	<ItemGroup>
+	  <AndroidNativeLibrary Include="lib\armeabi-v7a\libnativelib.so">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+	  </AndroidNativeLibrary>
+	  <AndroidNativeLibrary Include="lib\armeabi-v7a\libc++_shared.so">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+	  </AndroidNativeLibrary>
+	  <AndroidNativeLibrary Include="lib\armeabi-v7a\libbitfi_entry_armeabi-v7a_Release.so">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+	  </AndroidNativeLibrary>
 	</ItemGroup>
 	<ProjectExtensions>
 	  <MonoDevelop>

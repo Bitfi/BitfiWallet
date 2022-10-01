@@ -180,6 +180,7 @@ namespace DagLibrary
 
  public struct LastTxRef
  {
+  public string hash;
   public string prevHash;
   public Int64 ordinal;
  }

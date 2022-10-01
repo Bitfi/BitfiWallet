@@ -65,7 +65,7 @@ namespace WalletLibrary.Core.Concrete.Wallets
 				if (addr != req.NoxAddress.BTCAddress)
 					throw new Exception(Sclear.MSG_ERROR_SIGNMESSAGE);
 
-				DagLibrary.Transaction transaction = new DagLibrary.Transaction(addr, req.ToAddress, Convert.ToDecimal(req.Amount),
+				DagLibrary.TransactionV2 transaction = new DagLibrary.TransactionV2(addr, req.ToAddress, Convert.ToDecimal(req.Amount),
 						Convert.ToDecimal(req.FeeTotal), lastTxRef);
 
 				bool signed = transaction.sign(privateKey.Value, uncompressedPk);
