@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.rokits.noxadmin" xmlns:p1="http://schemas.android.com/apk/res/android" p1:installLocation="auto" p1:versionCode="26" p1:versionName="26">
+<manifest package="com.rokits.noxadmin" xmlns:p1="http://schemas.android.com/apk/res/android" p1:installLocation="auto" p1:versionCode="27" p1:versionName="27">
 	<uses-permission p1:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission p1:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission p1:name="android.permission.BATTERY_STATS" />

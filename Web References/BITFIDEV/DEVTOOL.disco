@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX?wsdl" docRef="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX" xmlns:q1="https://bitfi.com/dataservices/" binding="q1:DEVTOOLSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="https://bitfi.dev/NoxMessages/V2/DEVTOOL.ASMX" xmlns:q2="https://bitfi.com/dataservices/" binding="q2:DEVTOOLSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>
